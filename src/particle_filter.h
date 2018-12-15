@@ -122,7 +122,7 @@ private:
 	const int NUM_PARTICLES = 100;
 	const double INIT_WEIGHT = 1
 	const double ZERO_DETECTION = 1e-6;
-	std::vector<double> MEAN {0, 0, 0};
+	std::vector<double> ZERO_MEAN {0, 0, 0};
 
 	/**
 	 * addNoise Adds noise to single particle
