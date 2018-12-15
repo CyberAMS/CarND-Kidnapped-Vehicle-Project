@@ -130,7 +130,7 @@ private:
 	 * @param mean[] Array of dimension 3 [mean value of x, y, yaw]
 	 * @param std[] Array of dimension 3 [standard deviation of x, y, yaw]
 	 */
-	void addNoise(Particle particle, double mean[], double std[]);
+	void addNoise(Particle* particle, double mean[], double std[]);
 
 };
 
