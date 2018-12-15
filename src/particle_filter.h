@@ -78,7 +78,7 @@ public:
 	 * @param predicted Vector of predicted landmark observations
 	 * @param observations Vector of landmark observations
 	 */
-	void dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations);
+	void dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations, std::vector<int>& associations, std::vector<double>& sense_x, std::vector<double>& sense_y);
 	
 	/**
 	 * updateWeights Updates the weights for each particle based on the likelihood of the 
@@ -87,6 +87,9 @@ public:
 	 * @param std_landmark[] Array of dimension 2 [Landmark measurement uncertainty [x [m], y [m]]]
 	 * @param observations Vector of landmark observations
 	 * @param map Map class containing map landmarks
+	 * @param std::vector<int> associations array containing best fit associated landmark ids
+	 * @param std::vector<double> sense_x array containing best fit associated landmark x positions
+	 * @param std::vector<double> sense_y array containing best fit associated landmark y positions
 	 */
 	void updateWeights(double sensor_range, double std_landmark[], const std::vector<LandmarkObs> &observations,
 			const Map &map_landmarks);
@@ -103,10 +106,11 @@ public:
 	 */
 	Particle SetAssociations(Particle& particle, const std::vector<int>& associations,
 		                     const std::vector<double>& sense_x, const std::vector<double>& sense_y);
-
 	
 	std::string getAssociations(Particle best);
+	
 	std::string getSenseX(Particle best);
+	
 	std::string getSenseY(Particle best);
 
 	/**
@@ -123,6 +127,7 @@ private:
 	const double INIT_WEIGHT = 1
 	const double ZERO_DETECTION = 1e-6;
 	std::vector<double> ZERO_MEAN {0, 0, 0};
+	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
 
 	/**
 	 * addNoise Adds noise to single particle
@@ -130,7 +135,26 @@ private:
 	 * @param mean[] Array of dimension 3 [mean value of x, y, yaw]
 	 * @param std[] Array of dimension 3 [standard deviation of x, y, yaw]
 	 */
-	void addNoise(Particle &particle, double mean[], double std[]);
+	void addNoise(Particle& particle, double mean[], double std[]);
+
+		/**
+	 * getMapLandmark Get landmark object from map object
+	 * @param num_landmark Number of the landmark
+	 * @param map_landmarks Object containing array of landmark elements [landmark_list] as array of dimension 3 [id_i, x_f, y_f]
+	 */
+	LandmarkObs getMapLandmark(unsigned int num_landmark, Map map_landmarks);
+
+		/**
+	 * transformVehicle2Map Transform observation to particle in map coordinates
+	 * @param x_offset_map Particle location in map coordinates (x direction)
+	 * @param y_offset_map Particle location in map coordinates (y direction)
+	 * @param x_change_relative Observation relative to vehicle coordinates (x direction)
+	 * @param y_change_relative Observation relative to vehicle coordinates (y direction)
+	 * @param alpha Particle angle in map coordinates
+	 * @param x_map Transformed observation in map coordinates (x direction)
+	 * @param y_map Transformed observation in map coordinates (y direction)
+	 */
+	void transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double& x_map, double& y_map);
 
 };
 

@@ -19,6 +19,9 @@
 
 using namespace std;
 
+	// define noise generator
+	static default_random_engine gen;
+
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// TODO: Set the number of particles. Initialize all particles to first position (based on estimates of 
 	//   x, y, theta and their uncertainties from GPS) and all weights to 1. 
@@ -102,7 +105,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	
 }
 
-void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations) {
+void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations, std::vector<int> &associations, std::vector<double> &sense_x, std::vector<double> &sense_y) {
 	// TODO: Find the predicted measurement that is closest to each observed measurement and assign the 
 	//   observed measurement to this particular landmark.
 	// NOTE: this method will NOT be called by the grading code. But you will probably find it useful to 
@@ -111,14 +114,14 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 	// define variables
 	unsigned int current_observation = 0;
 	unsigned int current_prediction = 0;
-	double min_distance = 0;
+	double min_distance = INFINITE_DISTANCE;
 	double distance = 0;
 	
 	// find nearest predicted landmark for all observed landmarks
 	for (current_observation = 0; current_observation < observations.size(); current_observation++) {
 		
-		// reinitialize minimum distance for next observation (kind of unnecessary, but just to be safe)
-		min_distance = 0;
+		// reinitialize minimum distance for next observation
+		min_distance = INFINITE_DISTANCE;
 		
 		// loop through all predicted landmarks
 		for (current_prediction = 0; current_prediction < predicted.size(); current_prediction++) {
@@ -126,15 +129,8 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 			// calculate distance between observation and prediction
 			distance = dist(observations[current_observation].x, observations[current_observation].y, predicted[current_prediction].x, predicted[current_prediction].y);
 			
-			// first prediction
-			if (current_prediction == 0) 
-				
-				// current distance is smallest distance
-				min_distance = distance;
-				
-			}
 			// smaller distance found
-			else if (distance < min_distance) {
+			if (distance < min_distance) {
 				
 				// assign current prediction to current observation
 				min_distance = distance;
@@ -143,6 +139,11 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 			}
 			
 		}
+		
+		// save and return best fit
+		associations.push_back(observations[current_observation].id);
+		x_sense.push_back(observations[current_observation].x);
+		y_sense.push_back(observations[current_observation].y);
 		
 	}
 	
@@ -162,45 +163,82 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	//   http://planning.cs.uiuc.edu/node99.html
 	
 	// define variables
-	unsigned int current_particle = 0;
-	unsigned int current_observation = 0;
+	unsigned int current_landmark = 0;
+	LandmarkObs landmark;
+	double distance = 0;
 	std::vector<LandmarkObs> predicted;
+	unsigned int current_particle = 0;
+	double part_x = 0;
+	double part_y = 0;
+	double part_theta = 0;
+	unsigned int current_observation = 0;
+	double obs_id = 0;
+	double obs_x = 0;
+	double obs_y = 0;
+	LandmarkObs observation_map;
+	std::vector<LandmarkObs> observations_map;
 	std::vector<int> associations;
 	std::vector<double> sense_x;
 	std::vector<double> sense_y;
+	double observation_weight = INIT_WEIGHT;
 	
-	// translate map landmarks into vehicle coordinate system
-	map_landmarks
-	
-	// add noise to landmarks?
-	std_landmark
+	// filter for landmarks in sensor distance
+	for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
+		
+		landmark = ParticleFilter::getMapLandmark(current_landmark, map_landmarks);
+		distance = dist(0, 0, landmark.x, landmark.y);
+		if (distance <= sensor_range) predicted.push_back(landmark);
+		
+	}
 	
 	// update weights for all particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
-		// 
+		// get data of current particle
+		part_x = particles[current_particle].x;
+		part_y = particles[current_particle].y;
+		part_theta = particles[current_particle].theta;
 		
-		// associate predicted landmark to observations
-		ParticleFilter::dataAssociation(predicted, observations);
+		// translate observations for particle from vehicle to map coordinates
+		for (current_observation = 0; current_observation < observations.size(); current_observation++) {
+			
+			// get data of current observation
+			obs_id = observations[current_observations].id;
+			obs_x = observations[current_observations].x;
+			obs_y = observations[current_observations].y;
+			
+			// translate observation for particle
+			ParticleFilter::transformVehicle2Map(x_part, y_part, obs_x, obs_y, part_theta, x_map, y_map);
+			
+			// save transformed observation
+			observation_map.id = obs_id;
+			observation_map.x = x_map;
+			observation_map.y = y_map;
+			observations_map.push_back(observation);
+			
+		}
 		
-		
+		// reset associations
 		associations.clear();
 		sense_x.clear();
 		sense_y.clear();
 		
+		// associate predicted landmarks to tranformed observations
+		ParticleFilter::dataAssociation(predicted, observations_map, associations, sense_x, sense_y);
+		ParticleFilter::SetAssociations(particles[current_particle], associations, sense_x, sense_y);
+		
+		// initialize particle weight
+		particles[current_particle].weight = INIT_WEIGHT;
+		
+		// calculate weights for each observation
 		for (current_observation = 0; current_observation < observations.size(); current_observation++) {
 			
-			associations.push_back(observations[current_observation].id);
-			sense_x.push_back(convertVehicle2World(observations[current_observation].x));
-			sense_y.push_back(convertVehicle2World(observations[current_observation].y));
+			// multiply multi-variate Gaussian values
+			observation_weight = mvg(part_x, part_y, sense_x[current_observation], sense_y[current_observation], std_landmark[0], std_landmark[1]);
+			if (observation_weight < ZERO_DETECTION) observation_weight = ZERO_DETECTION;
+			particles[current_particle].weight *= observation_weight;
 			
 		}
-		
-		ParticleFilter::SetAssociations(particles[current_particle], associations, sense_x, sense_y)
-		
-		
-		
-		weight = normpdf(x, mu, std);
 		
 	}
 	
@@ -210,7 +248,32 @@ void ParticleFilter::resample() {
 	// TODO: Resample particles with replacement with probability proportional to their weight. 
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
-
+	
+	// define variables
+	unsigned int current_particle = 0;
+	std::vector<double> weights;
+	std::vector<Particle> new_particles;
+	
+	// get all particle weights
+	for (current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		weights.push_back(particles[current_particle].weight);
+		
+	}
+	
+	// define discrete distribution based on weights
+	discrete_distribution<int> dd_p(weights);
+	
+	// draw the same amount of new particles
+	for (current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		new_particles.push_back(particles[ddp(gen)]);
+		
+	}
+	
+	// use new particles instead of original ones
+	particples = new_particles;
+	
 }
 
 Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<int>& associations, 
@@ -256,11 +319,8 @@ string ParticleFilter::getSenseY(Particle best)
     return s;
 }
 
-Particle ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
+void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 	// Function to add noise to a single particle
-	
-	// define noise generator
-	static default_random_engine gen;
 	
 	// define Gaussian distribution noise
 	normal_distribution<double> nd_x(mean[0], std[0]);
@@ -271,5 +331,30 @@ Particle ParticleFilter::addNoise(Particle &particle, double mean[], double std[
 	particle.x += nd_x(gen);
 	particle.y += nd_y(gen);
 	particle.theta += nd_theta(gen);
+	
+}
+
+LandmarkObs ParticleFilter::getMapLandmark(unsigned int num_landmark, Map map_landmarks) {
+	// Function to retrieve landmark from map
+	
+	// define variables
+	LandmarkObs landmark;
+	
+	// assign data
+	landmark.id = map_landmarks.landmark_list[num_landmark].id_i;
+	landmark.x = (double) map_landmarks.landmark_list[num_landmark].x_f;
+	landmark.y = (double) map_landmarks.landmark_list[num_landmark].y_f;
+	
+	// return output
+	return landmark;
+	
+}
+
+void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double &x_map, double &y_map); {
+	// Function to transform vehicle to map coordinates
+	
+	// transformations
+	x_map = x_offset_map + (cos(alpha) * x_change_relative) - (sin(alpha) * y_change_relative);
+	y_map = y_offset_map + (sin(alpha) * x_change_relative) + (cos(alpha) * y_change_relative);
 	
 }
