@@ -19,12 +19,38 @@
 
 using namespace std;
 
+static default_random_engine gen;
+
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// TODO: Set the number of particles. Initialize all particles to first position (based on estimates of 
 	//   x, y, theta and their uncertainties from GPS) and all weights to 1. 
 	// Add random Gaussian noise to each particle.
 	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
-
+	
+	// define number of particles
+	num_particles = NUM_PARTICLES;
+	
+	// initialize particle vector
+	for (unsigned int current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		// initialize current particle
+		Particle particle;
+		particle.id = current_particle;
+		particle.x = x;
+		particle.y = y;
+		particle.theta = theta;
+		particle.weight = INIT_WEIGHT;
+		
+		// add noise to current particle
+		ParticleFilter::addNoise(&particle, MEAN, std);
+		
+		// add current particle to particle vector
+		particles.push_back(particle);
+	}
+	
+	// all particles are initialized
+	is_initialized = true;
+	
 }
 
 void ParticleFilter::prediction(double delta_t, double std_pos[], double velocity, double yaw_rate) {
@@ -32,7 +58,40 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	// NOTE: When adding noise you may find std::normal_distribution and std::default_random_engine useful.
 	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
 	//  http://www.cplusplus.com/reference/random/default_random_engine/
-
+	
+	// move all particles according to measurement
+	for (unsigned int current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		//check whether yaw rate is zero
+		if fabs(yaw_rate) < ZERO_DETECTION {
+			
+			// precalculations
+			double theta_0 = particles[current_particle].theta;
+			double velocity_dot = velocity * delta_t;
+			
+			// motion step
+			particles[current_particle].x += velocity_dot * cos(theta_0);
+			particles[current_particle].y += velocity_dot * sin(theta_0);
+			
+		}
+		else {
+			
+			// precalculations
+			double theta_0 = particles[current_particle].theta;
+			double velocity_over_yaw_rate = velocity / yaw_rate;
+			double theta_dot = yaw_rate * delta_t;
+			
+			// motion step
+			particles[current_particle].x += velocity_over_yaw_rate * (sin(theta_0 + theta_dot) - sin(theta_0));
+			particles[current_particle].y += velocity_over_yaw_rate * (cos(theta_0) - cos(theta_0 + theta_dot));
+			particles[current_particle].theta += theta_dot;
+			
+		}
+		
+		// add noise to current particle
+		ParticleFilter::addNoise(&particle, MEAN, std);
+	}
+	
 }
 
 void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations) {
@@ -86,6 +145,7 @@ string ParticleFilter::getAssociations(Particle best)
     s = s.substr(0, s.length()-1);  // get rid of the trailing space
     return s;
 }
+
 string ParticleFilter::getSenseX(Particle best)
 {
 	vector<double> v = best.sense_x;
@@ -95,6 +155,7 @@ string ParticleFilter::getSenseX(Particle best)
     s = s.substr(0, s.length()-1);  // get rid of the trailing space
     return s;
 }
+
 string ParticleFilter::getSenseY(Particle best)
 {
 	vector<double> v = best.sense_y;
@@ -103,4 +164,19 @@ string ParticleFilter::getSenseY(Particle best)
     string s = ss.str();
     s = s.substr(0, s.length()-1);  // get rid of the trailing space
     return s;
+}
+
+Particle ParticleFilter::addNoise(Particle* particle, double mean[], double std[]) {
+	// Function to add noise to a single particle
+	
+	// define Gaussian distribution noise
+	normal_distribution<double> nd_x(mean[0], std[0]);
+	normal_distribution<double> nd_y(mean[1], std[1]);
+	normal_distribution<double> nd_theta(mean[2], std[2]);
+	
+	// add noise to particle
+	*particle.x += nd_x(gen);
+	*particle.y += nd_y(gen);
+	*particle.theta += nd_theta(gen);
+	
 }

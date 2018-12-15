@@ -97,7 +97,7 @@ public:
 	 */
 	void resample();
 
-	/*
+	/**
 	 * Set a particles list of associations, along with the associations calculated world x,y coordinates
 	 * This can be a very useful debugging tool to make sure transformations are correct and assocations correctly connected
 	 */
@@ -115,8 +115,23 @@ public:
 	const bool initialized() const {
 		return is_initialized;
 	}
+
+private:
+
+	// define constants
+	const int NUM_PARTICLES = 100;
+	const double INIT_WEIGHT = 1
+	const double ZERO_DETECTION = 1e-6;
+	std::vector<double> MEAN {0, 0, 0};
+
+	/**
+	 * addNoise Adds noise to single particle
+	 * @param particle Particle to which noise should be added
+	 * @param mean[] Array of dimension 3 [mean value of x, y, yaw]
+	 * @param std[] Array of dimension 3 [standard deviation of x, y, yaw]
+	 */
+	void addNoise(Particle particle, double mean[], double std[]);
+
 };
-
-
 
 #endif /* PARTICLE_FILTER_H_ */
