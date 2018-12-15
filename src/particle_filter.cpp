@@ -42,7 +42,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 		particle.weight = INIT_WEIGHT;
 		
 		// add noise to current particle
-		ParticleFilter::addNoise(&particle, MEAN, std);
+		ParticleFilter::addNoise(particle, MEAN, std);
 		
 		// add current particle to particle vector
 		particles.push_back(particle);
@@ -89,7 +89,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		}
 		
 		// add noise to current particle
-		ParticleFilter::addNoise(&particle, MEAN, std);
+		ParticleFilter::addNoise(particle, MEAN, std);
 	}
 	
 }
@@ -166,7 +166,7 @@ string ParticleFilter::getSenseY(Particle best)
     return s;
 }
 
-Particle ParticleFilter::addNoise(Particle* particle, double mean[], double std[]) {
+Particle ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 	// Function to add noise to a single particle
 	
 	// define Gaussian distribution noise
@@ -175,8 +175,8 @@ Particle ParticleFilter::addNoise(Particle* particle, double mean[], double std[
 	normal_distribution<double> nd_theta(mean[2], std[2]);
 	
 	// add noise to particle
-	*particle.x += nd_x(gen);
-	*particle.y += nd_y(gen);
-	*particle.theta += nd_theta(gen);
+	particle.x += nd_x(gen);
+	particle.y += nd_y(gen);
+	particle.theta += nd_theta(gen);
 	
 }
