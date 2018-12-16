@@ -594,7 +594,7 @@ std::string ParticleFilter::createArrayString(double array[]) {
 	std::ostringstream streamObj;
 	
 	// add information about all elements to string
-	for (current_element = 0; current_element < sizeof(array); current_element++) {
+	for (current_element = 0; current_element < (unsigned int) (sizeof(array) / sizeof(*array)); current_element++) {
 		
 		streamObj.clear();
 		streamObj << array[current_element];
