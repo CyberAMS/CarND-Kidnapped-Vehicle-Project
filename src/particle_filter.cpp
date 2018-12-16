@@ -71,7 +71,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// display message if required
 	if (bDISPLAY && bDISPLAY_init) {
 		cout << "  num_particles: " << endl << num_particles << endl;
-//		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "  is_initialized: " << endl << is_initialized << endl;
 		cout << "  theta: " << endl << theta << endl;
 		cout << "--- PARTICLE_FILTER: init - End" << endl;
@@ -139,7 +139,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_prediction) {
-//		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: prediction - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -322,7 +322,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 //		cout << "  observations: " << endl << observations << endl;
 //		cout << "  map_landmarks: " << endl << map_landmarks << endl;
-//		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -344,7 +344,7 @@ void ParticleFilter::resample() {
 	if (bDISPLAY && bDISPLAY_resample) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: resample - Start" << endl;
-//		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 	}
 	
 	// get all particle weights
@@ -370,7 +370,7 @@ void ParticleFilter::resample() {
 	// display message if required
 	if (bDISPLAY && bDISPLAY_resample) {
 //		cout << "  weights: " << endl << weights << endl;
-//		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: resample - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -390,7 +390,7 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
 	if (bDISPLAY && bDISPLAY_SetAssociations) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: SetAssociations - Start" << endl;
-//		cout << "  particle: " << endl << particle << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
 //		cout << "  associations: " << endl << associations << endl;
 //		cout << "  sense_x: " << endl << sense_x << endl;
 //		cout << "  sense_y: " << endl << sense_y << endl;
@@ -402,7 +402,7 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_SetAssociations) {
-//		cout << "  particle: " << endl << particle << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
 //		cout << "  associations: " << endl << associations << endl;
 //		cout << "  sense_x: " << endl << sense_x << endl;
 //		cout << "  sense_y: " << endl << sense_y << endl;
@@ -453,7 +453,7 @@ void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 	if (bDISPLAY && bDISPLAY_addNoise) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: addNoise - Start" << endl;
-//		cout << "  particle: " << endl << particle << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
 		cout << "  mean: " << endl << mean << endl;
 		cout << "  std: " << endl << std << endl;
 	}
@@ -470,7 +470,7 @@ void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_addNoise) {
-//		cout << "  particle: " << endl << particle << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
 		cout << "--- PARTICLE_FILTER: addNoise - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
