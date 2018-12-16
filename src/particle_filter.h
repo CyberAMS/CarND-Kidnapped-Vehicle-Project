@@ -171,13 +171,13 @@ private:
 	 * createParticleString Create string with information about one particle
 	 * @param particle Particle object
 	 */
-	String ParticleFilter::createParticleString(Particle particle);
+	string ParticleFilter::createParticleString(Particle particle);
 
 		/**
 	 * createParticlesString Create string with information about all particles
 	 * @param particles List of particle objects
 	 */
-	String ParticleFilter::createParticlesString(std::vector<Particle> particles);
+	string ParticleFilter::createParticlesString(std::vector<Particle> particles);
 
 };
 
