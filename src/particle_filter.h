@@ -129,6 +129,7 @@ private:
 	const double ZERO_DETECTION = 1e-6;
 	double ZERO_MEAN [3] = {0, 0, 0};
 	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
+	const bool bDebug = true;
 
 	/**
 	 * addNoise Adds noise to single particle
@@ -158,5 +159,11 @@ private:
 	void transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double& x_map, double& y_map);
 
 };
+
+		/**
+	 * printParticles Print information about all particles
+	 * @param particles List of particle objects
+	 */
+void printParticles(std::vector<Particle> particles);
 
 #endif /* PARTICLE_FILTER_H_ */

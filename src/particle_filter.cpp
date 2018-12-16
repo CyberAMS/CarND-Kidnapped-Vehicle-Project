@@ -33,6 +33,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	
 	// define variables
 	unsigned int current_particle = 0;
+	Particle particle;
 	
 	// define number of particles
 	num_particles = NUM_PARTICLES;
@@ -41,7 +42,6 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
 		// initialize current particle
-		Particle particle;
 		particle.id = current_particle;
 		particle.x = x;
 		particle.y = y;
@@ -57,6 +57,9 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	
 	// all particles are initialized
 	is_initialized = true;
+	
+	// display debug messages if necessary
+	if bDebug printParticles(particles);
 	
 }
 
@@ -363,5 +366,20 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	// transformations
 	x_map = x_offset_map + (cos(alpha) * x_change_relative) - (sin(alpha) * y_change_relative);
 	y_map = y_offset_map + (sin(alpha) * x_change_relative) + (cos(alpha) * y_change_relative);
+	
+}
+
+void printParticles(std::vector<Particle> particles) {
+	// Funktion that prints all particles
+	
+	//define variables
+	unsigned int current_particle = 0:
+	
+	// print information about all particles
+	for (current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		cout << "Particle", current_particle, particles[current_particle].id, particles[current_particle].x, particles[current_particle].y, particles[current_particle].theta << endl;
+		
+	}
 	
 }
