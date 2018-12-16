@@ -378,7 +378,7 @@ void ParticleFilter::printParticles(std::vector<Particle> particles) {
 	// print information about all particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
-		cout << "Particle", current_particle, particles[current_particle].id, particles[current_particle].x, particles[current_particle].y, particles[current_particle].theta << endl;
+		cout << "Particle" << current_particle << particles[current_particle].id << particles[current_particle].x << particles[current_particle].y << particles[current_particle].theta << endl;
 		
 	}
 	
