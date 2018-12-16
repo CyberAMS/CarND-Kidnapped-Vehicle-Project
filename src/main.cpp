@@ -176,7 +176,6 @@ int main()
 			
 			// display message if required
 			if (bDISPLAY) {
-				cout << "  Message: " << msg << endl;
 				cout << "--- MAIN: onMessage - End" << endl;
 				cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 			}
