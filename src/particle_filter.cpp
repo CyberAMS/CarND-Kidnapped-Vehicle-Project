@@ -100,7 +100,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		}
 		
 		// add noise to current particle
-		addNoise(particles[current_particle], ZERO_MEAN, std);
+		addNoise(particles[current_particle], ZERO_MEAN, std_pos);
 	}
 	
 }
