@@ -73,7 +73,6 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 		cout << "  num_particles: " << endl << num_particles << endl << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "  is_initialized: " << endl << is_initialized << endl << endl;
-		cout << "  theta: " << endl << theta << endl << endl;
 		cout << "--- PARTICLE_FILTER: init - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -612,9 +611,9 @@ std::string ParticleFilter::createParticleString(Particle particle) {
 	text += "x=" + std::to_string(particle.x) + " ";
 	text += "y=" + std::to_string(particle.y) + " ";
 	text += "theta=" + std::to_string(particle.theta) + " ";
-	text += "weight=" + std::to_string(particle.weight) + " ";
-	text += "associations=\n" + createIntegerVectorString(particle.associations) + " ";
-	text += "sense_x=\n" + createDoubleVectorString(particle.sense_x) + " ";
+	text += "weight=" + std::to_string(particle.weight) + "\n";
+	text += "associations=\n" + createIntegerVectorString(particle.associations);
+	text += "sense_x=\n" + createDoubleVectorString(particle.sense_x);
 	text += "sense_y=\n" + createDoubleVectorString(particle.sense_y);
 	
 	// retrun output
