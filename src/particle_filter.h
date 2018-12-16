@@ -141,7 +141,7 @@ private:
 	const bool bDISPLAY_resample = true;
 	const bool bDISPLAY_SetAssociations = false;
 	const bool bDISPLAY_addNoise = true;
-	const bool bDISPLAY_getMapLandmark = true;
+	const bool bDISPLAY_getMapLandmark = false;
 	const bool bDISPLAY_transformVehicle2Map = false;
 	
 	/**
