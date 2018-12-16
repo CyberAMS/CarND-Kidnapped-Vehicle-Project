@@ -29,6 +29,14 @@ std::string hasData(std::string s) {
   return "";
 }
 
+// define constants
+const bool bFILEOUTPUT = true;
+const bool bDISPLAY = true;
+
+// define file for redirecting standard output and append
+ofstream out("out.txt", fstream::app);
+streambuf *coutbuf = cout.rdbuf(); // save screen object
+
 int main()
 {
   uWS::Hub h;
@@ -76,6 +84,18 @@ int main()
 			double sense_y = std::stod(j[1]["sense_y"].get<std::string>());
 			double sense_theta = std::stod(j[1]["sense_theta"].get<std::string>());
 
+			// redirect standard output to file if necessary
+			if (bFILEOUTPUT) {
+				cout.rdbuf(out.rdbuf());
+			}
+
+			// display message if required
+			if (bDISPLAY) {
+				cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
+				cout << "MAIN: onMessage - Start" << endl;
+			}
+
+			
 			pf.init(sense_x, sense_y, sense_theta, sigma_pos);
 		  }
 		  else {
@@ -153,7 +173,19 @@ int main()
         std::string msg = "42[\"manual\",{}]";
         ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
       }
-    }
+			
+			// display message if required
+			if (bDISPLAY) {
+				cout << "  Message: " << msg << endl;
+				cout << "--- MAIN: onMessage - End" << endl;
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+			}
+			
+			// set standard output to screen if necessary
+			if (bFILEOUTPUT) {
+				cout.rdbuf(coutbuf);
+			}
+		}
 
   });
 
