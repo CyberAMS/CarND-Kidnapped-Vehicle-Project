@@ -158,12 +158,12 @@ private:
 	 */
 	void transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double& x_map, double& y_map);
 
-};
-
 		/**
 	 * printParticles Print information about all particles
 	 * @param particles List of particle objects
 	 */
-void printParticles(std::vector<Particle> particles);
+	void printParticles(std::vector<Particle> particles);
+
+};
 
 #endif /* PARTICLE_FILTER_H_ */

@@ -59,7 +59,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	is_initialized = true;
 	
 	// display debug messages if necessary
-	if bDebug printParticles(particles);
+	if (bDebug) printParticles(particles);
 	
 }
 
@@ -369,11 +369,11 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	
 }
 
-void printParticles(std::vector<Particle> particles) {
+void ParticleFilter::printParticles(std::vector<Particle> particles) {
 	// Funktion that prints all particles
 	
 	//define variables
-	unsigned int current_particle = 0:
+	unsigned int current_particle = 0;
 	
 	// print information about all particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
