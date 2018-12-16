@@ -554,7 +554,7 @@ std::string ParticleFilter::createDoubleVectorString(std::vector<double> double_
 	// add information about all elements to string
 	for (current_element = 0; current_element < double_vector.size(); current_element++) {
 		
-		streamObj << "Element " << current_element << ": " + double_vector[current_element] << endl;
+		streamObj << "Element " << current_element << ": " << double_vector[current_element] << endl;
 		
 	}
 	
@@ -592,7 +592,7 @@ std::string ParticleFilter::createArrayString(double array[], unsigned int num_e
 	// add information about all elements to string
 	for (current_element = 0; current_element < num_elements; current_element++) {
 		
-		streamObj << "Element " << current_element << ": " + array[current_element] << endl;
+		streamObj << "Element " << current_element << ": " << array[current_element] << endl;
 		
 	}
 	
