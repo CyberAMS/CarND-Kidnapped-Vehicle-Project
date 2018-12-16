@@ -129,7 +129,7 @@ private:
 	const double ZERO_DETECTION = 1e-6;
 	double ZERO_MEAN [3] = {0, 0, 0};
 	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
-	const bool bDebug = true;
+	const bool bDISPLAY = true;
 
 	/**
 	 * addNoise Adds noise to single particle

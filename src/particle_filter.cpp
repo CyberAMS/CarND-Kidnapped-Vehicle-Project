@@ -35,6 +35,16 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	unsigned int current_particle = 0;
 	Particle particle;
 	
+	// display message if required
+	if (bDISPLAY) {
+		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
+		cout << "PARTICLE_FILTER: init - Start" << endl;
+		cout << "  x: " << endl << x << endl;
+		cout << "  y: " << endl << y << endl;
+		cout << "  theta: " << endl << theta << endl;
+		cout << "  std: " << endl << std << endl;
+	}
+	
 	// define number of particles
 	num_particles = NUM_PARTICLES;
 	
@@ -58,8 +68,16 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// all particles are initialized
 	is_initialized = true;
 	
-	// display debug messages if necessary
-	if (bDebug) printParticles(particles);
+	// display message if required
+	if (bDISPLAY) {
+		cout << "  num_particles: " << endl << num_particles << endl;
+		cout << "  particles: " << endl << particles << endl; // printParticles(particles)
+		cout << "  is_initialized: " << endl << is_initialized << endl;
+		cout << "  theta: " << endl << theta << endl;
+		cout << "--- PARTICLE_FILTER: init - End" << endl;
+		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+		
+	}
 	
 }
 
@@ -75,6 +93,16 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	double velocity_dot = 0;
 	double velocity_over_yaw_rate = 0;
 	double theta_dot = 0;
+	
+	// display message if required
+	if (bDISPLAY) {
+		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
+		cout << "PARTICLE_FILTER: prediction - Start" << endl;
+		cout << "  delta_t: " << endl << delta_t << endl;
+		cout << "  std_pos: " << endl << std_pos << endl;
+		cout << "  velocity: " << endl << velocity << endl;
+		cout << "  yaw_rate: " << endl << yaw_rate << endl;
+	}
 	
 	// move all particles according to measurement
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
@@ -107,6 +135,14 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		
 		// add noise to current particle
 		addNoise(particles[current_particle], ZERO_MEAN, std_pos);
+	}
+	
+	// display message if required
+	if (bDISPLAY) {
+		cout << "  particles: " << endl << particles << endl; // printParticles(particles)
+		cout << "--- PARTICLE_FILTER: prediction - End" << endl;
+		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+		
 	}
 	
 }
@@ -378,7 +414,7 @@ void ParticleFilter::printParticles(std::vector<Particle> particles) {
 	// print information about all particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
-		cout << "Particle" << current_particle << particles[current_particle].id << particles[current_particle].x << particles[current_particle].y << particles[current_particle].theta << endl;
+		cout << "Particle " << current_particle << " " << particles[current_particle].id << " " << particles[current_particle].x << " " << particles[current_particle].y << " " << particles[current_particle].theta << endl;
 		
 	}
 	
