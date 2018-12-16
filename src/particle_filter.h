@@ -195,6 +195,18 @@ private:
 	 */
 	std::string createLandmarksString(std::vector<LandmarkObs> landmarks);
 
+		/**
+	 * createDoubleVectorString Create string with information about all doubles in a vector
+	 * @param double_vector Vector of doubles
+	 */
+	std::string createDoubleVectorString(std::vector<double> double_vector);
+
+		/**
+	 * createIntegerVectorString Create string with information about all integers in a vector
+	 * @param int_vector Vector of integers
+	 */
+	std::string createIntegerVectorString(std::vector<int> int_vector);
+
 };
 
 #endif /* PARTICLE_FILTER_H_ */

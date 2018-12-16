@@ -165,9 +165,9 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 		cout << "PARTICLE_FILTER: dataAssociation - Start" << endl;
 		cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-//		cout << "  associations: " << endl << associations << endl;
-//		cout << "  sense_x: " << endl << sense_x << endl;
-//		cout << "  sense_y: " << endl << sense_y << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 	}
 	
 	// find nearest predicted landmark for all observed landmarks
@@ -203,9 +203,9 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 	// display message if required
 	if (bDISPLAY && bDISPLAY_dataAssociation) {
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-//		cout << "  associations: " << endl << associations << endl;
-//		cout << "  sense_x: " << endl << sense_x << endl;
-//		cout << "  sense_y: " << endl << sense_y << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 		cout << "--- PARTICLE_FILTER: dataAssociation - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -391,9 +391,9 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: SetAssociations - Start" << endl;
 		cout << "  particle: " << endl << createParticleString(particle) << endl;
-//		cout << "  associations: " << endl << associations << endl;
-//		cout << "  sense_x: " << endl << sense_x << endl;
-//		cout << "  sense_y: " << endl << sense_y << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 	}
 	
 	particle.associations = associations;
@@ -403,9 +403,9 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
 	// display message if required
 	if (bDISPLAY && bDISPLAY_SetAssociations) {
 		cout << "  particle: " << endl << createParticleString(particle) << endl;
-//		cout << "  associations: " << endl << associations << endl;
-//		cout << "  sense_x: " << endl << sense_x << endl;
-//		cout << "  sense_y: " << endl << sense_y << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 		cout << "--- PARTICLE_FILTER: SetAssociations - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -604,6 +604,44 @@ std::string ParticleFilter::createLandmarksString(std::vector<LandmarkObs> landm
 	for (current_landmark = 0; current_landmark < landmarks.size(); current_landmark++) {
 		
 		text += "Landmark " + std::to_string(current_landmark) + ": " + createLandmarkString(landmarks[current_landmark]) + "\n";
+		
+	}
+	
+	// return output
+	return text;
+	
+}
+
+std::string ParticleFilter::createDoubleVectorString(std::vector<double> double_vector) {
+	// Function that creates a string for a vector of doubles
+	
+	//define variables
+	unsigned int current_element = 0;
+	std::string text = "";
+	
+	// add information about all elements to string
+	for (current_element = 0; current_element < double_vector.size(); current_element++) {
+		
+		text += "Element " + std::to_string(current_element) + ": " + std::to_string(double_vector[current_element]) + "\n";
+		
+	}
+	
+	// return output
+	return text;
+	
+}
+
+std::string ParticleFilter::createIntegerVectorString(std::vector<int> int_vector) {
+	// Function that creates a string for a vector of integers
+	
+	//define variables
+	unsigned int current_element = 0;
+	std::string text = "";
+	
+	// add information about all elements to string
+	for (current_element = 0; current_element < int_vector.size(); current_element++) {
+		
+		text += "Element " + std::to_string(current_element) + ": " + std::to_string(int_vector[current_element]) + "\n";
 		
 	}
 	
