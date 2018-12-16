@@ -255,7 +255,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "  sensor_range: " << endl << sensor_range << endl;
 		cout << "  std_landmark: " << endl << std_landmark << endl;
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-//		cout << "  map_landmarks: " << endl << map_landmarks << endl;
+		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
 	
 	// filter for landmarks in sensor distance
@@ -321,7 +321,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	// display message if required
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-//		cout << "  map_landmarks: " << endl << map_landmarks << endl;
+		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
@@ -369,7 +369,7 @@ void ParticleFilter::resample() {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_resample) {
-//		cout << "  weights: " << endl << weights << endl;
+		cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: resample - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
@@ -489,7 +489,7 @@ LandmarkObs ParticleFilter::getMapLandmark(unsigned int num_landmark, Map map_la
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: getMapLandmark - Start" << endl;
 		cout << "  num_landmark: " << endl << num_landmark << endl;
-//		cout << "  map_landmarks: " << endl << map_landmarks << endl;
+		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
 	
 	// assign data
@@ -586,7 +586,7 @@ std::string ParticleFilter::createLandmarkString(LandmarkObs landmark) {
 	// add information about particle to string
 	text += "id=" + std::to_string(landmark.id) + " ";
 	text += "x=" + std::to_string(landmark.x) + " ";
-	text += "y=" + std::to_string(landmark.y) + " ";
+	text += "y=" + std::to_string(landmark.y);
 	
 	// retrun output
 	return text;
@@ -643,6 +643,27 @@ std::string ParticleFilter::createIntegerVectorString(std::vector<int> int_vecto
 		
 		text += "Element " + std::to_string(current_element) + ": " + std::to_string(int_vector[current_element]) + "\n";
 		
+	}
+	
+	// return output
+	return text;
+	
+}
+
+std::string ParticleFilter::createMapString(Map map) {
+	// Function that creates a string for a map
+	
+	//define variables
+	unsigned int current_landmark = 0;
+	std::string text = "";
+	
+	// add information about all landmarks to string
+	for (current_landmark = 0; current_landmark < map.landmark_list.size(); current_landmark++) {
+		
+		text += "Map landmark " + std::to_string(current_landmark) + ": ";
+		text += "id_i=" + std::to_string(map.landmark_list[current_landmark].id_i) + " ";
+		text += "x_f=" + std::to_string(map.landmark_list[current_landmark].x_f) + " ";
+		text += "y_f=" + std::to_string(map.landmark_list[current_landmark].y_f) + "\n";
 	}
 	
 	// return output

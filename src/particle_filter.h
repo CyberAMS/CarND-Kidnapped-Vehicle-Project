@@ -207,6 +207,12 @@ private:
 	 */
 	std::string createIntegerVectorString(std::vector<int> int_vector);
 
+		/**
+	 * createMapString Create string with information about all landmarks of a map
+	 * @param map Map object with list of landmarks
+	 */
+	std::string createMapString(Map map);
+
 };
 
 #endif /* PARTICLE_FILTER_H_ */
