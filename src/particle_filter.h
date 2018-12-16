@@ -211,7 +211,7 @@ private:
 	 * createArrayString Create string with information about all elements in an array
 	 * @param array Array of some data type
 	 */
-	std::string ParticleFilter::createArrayString(auto array[]);
+	std::string ParticleFilter::createArrayString(double array[]);
 
 	/**
 	 * createMapString Create string with information about all landmarks of a map
