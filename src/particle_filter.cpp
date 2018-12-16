@@ -74,7 +74,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
 		//check whether yaw rate is zero
-		if fabs(yaw_rate) < ZERO_DETECTION {
+		if (fabs(yaw_rate) < ZERO_DETECTION) {
 			
 			// precalculations
 			theta_0 = particles[current_particle].theta;
@@ -100,7 +100,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		}
 		
 		// add noise to current particle
-		ParticleFilter::addNoise(particle, ZERO_MEAN, std);
+		ParticleFilter::addNoise(particles[current_particle], ZERO_MEAN, std);
 	}
 	
 }
@@ -142,8 +142,8 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 		
 		// save and return best fit
 		associations.push_back(observations[current_observation].id);
-		x_sense.push_back(observations[current_observation].x);
-		y_sense.push_back(observations[current_observation].y);
+		sense_x.push_back(observations[current_observation].x);
+		sense_y.push_back(observations[current_observation].y);
 		
 	}
 	
@@ -203,18 +203,18 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		for (current_observation = 0; current_observation < observations.size(); current_observation++) {
 			
 			// get data of current observation
-			obs_id = observations[current_observations].id;
-			obs_x = observations[current_observations].x;
-			obs_y = observations[current_observations].y;
+			obs_id = observations[current_observation].id;
+			obs_x = observations[current_observation].x;
+			obs_y = observations[current_observation].y;
 			
 			// translate observation for particle
-			ParticleFilter::transformVehicle2Map(x_part, y_part, obs_x, obs_y, part_theta, x_map, y_map);
+			ParticleFilter::transformVehicle2Map(part_x, part_y, obs_x, obs_y, part_theta, x_map, y_map);
 			
 			// save transformed observation
 			observation_map.id = obs_id;
 			observation_map.x = x_map;
 			observation_map.y = y_map;
-			observations_map.push_back(observation);
+			observations_map.push_back(observation_map);
 			
 		}
 		
@@ -225,7 +225,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		
 		// associate predicted landmarks to tranformed observations
 		ParticleFilter::dataAssociation(predicted, observations_map, associations, sense_x, sense_y);
-		ParticleFilter::SetAssociations(particles[current_particle], associations, sense_x, sense_y);
+		particles[current_particle] = ParticleFilter::SetAssociations(particles[current_particle], associations, sense_x, sense_y);
 		
 		// initialize particle weight
 		particles[current_particle].weight = INIT_WEIGHT;
@@ -262,17 +262,17 @@ void ParticleFilter::resample() {
 	}
 	
 	// define discrete distribution based on weights
-	discrete_distribution<int> dd_p(weights);
+	discrete_distribution<int> dd_p(weights.begin(), weights.end());
 	
 	// draw the same amount of new particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
-		new_particles.push_back(particles[ddp(gen)]);
+		new_particles.push_back(particles[dd_p(gen)]);
 		
 	}
 	
 	// use new particles instead of original ones
-	particples = new_particles;
+	particles = new_particles;
 	
 }
 
@@ -287,6 +287,8 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
     particle.associations = associations;
     particle.sense_x = sense_x;
     particle.sense_y = sense_y;
+		
+		return particle;
 }
 
 string ParticleFilter::getAssociations(Particle best)
@@ -350,7 +352,7 @@ LandmarkObs ParticleFilter::getMapLandmark(unsigned int num_landmark, Map map_la
 	
 }
 
-void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double &x_map, double &y_map); {
+void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double &x_map, double &y_map) {
 	// Function to transform vehicle to map coordinates
 	
 	// transformations

@@ -28,9 +28,7 @@ struct Particle {
 class ParticleFilter {
 	
 	// Number of particles to draw
-	int num_particles; 
-	
-	
+	unsigned int num_particles; 
 	
 	// Flag, if filter is initialized
 	bool is_initialized;
@@ -124,9 +122,9 @@ private:
 
 	// define constants
 	const int NUM_PARTICLES = 100;
-	const double INIT_WEIGHT = 1
+	const double INIT_WEIGHT = 1;
 	const double ZERO_DETECTION = 1e-6;
-	std::vector<double> ZERO_MEAN {0, 0, 0};
+	double ZERO_MEAN [3] = {0, 0, 0};
 	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
 
 	/**
