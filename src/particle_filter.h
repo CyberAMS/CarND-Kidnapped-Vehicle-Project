@@ -130,7 +130,16 @@ private:
 	double ZERO_MEAN [3] = {0, 0, 0};
 	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
 	const bool bDISPLAY = true;
-
+	const bool bDISPLAY_init = true;
+	const bool bDISPLAY_prediction = true;
+	const bool bDISPLAY_dataAssociation = true;
+	const bool bDISPLAY_updateWeights = true;
+	const bool bDISPLAY_resample = true;
+	const bool bDISPLAY_SetAssociations = true;
+	const bool bDISPLAY_addNoise = true;
+	const bool bDISPLAY_getMapLandmark = true;
+	const bool bDISPLAY_transformVehicle2Map = true;
+	
 	/**
 	 * addNoise Adds noise to single particle
 	 * @param particle Particle to which noise should be added
