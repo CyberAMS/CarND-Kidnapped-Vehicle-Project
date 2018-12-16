@@ -39,10 +39,10 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	if (bDISPLAY && bDISPLAY_init) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: init - Start" << endl;
-		cout << "  x: " << endl << x << endl;
-		cout << "  y: " << endl << y << endl;
-		cout << "  theta: " << endl << theta << endl;
-		cout << "  std: " << endl << std << endl;
+		cout << "  x: " << endl << x << endl << endl;
+		cout << "  y: " << endl << y << endl << endl;
+		cout << "  theta: " << endl << theta << endl << endl;
+		cout << "  std: " << endl << createArrayString(std) << endl;
 	}
 	
 	// define number of particles
@@ -70,10 +70,10 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_init) {
-		cout << "  num_particles: " << endl << num_particles << endl;
+		cout << "  num_particles: " << endl << num_particles << endl << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
-		cout << "  is_initialized: " << endl << is_initialized << endl;
-		cout << "  theta: " << endl << theta << endl;
+		cout << "  is_initialized: " << endl << is_initialized << endl << endl;
+		cout << "  theta: " << endl << theta << endl << endl;
 		cout << "--- PARTICLE_FILTER: init - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -98,10 +98,10 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	if (bDISPLAY && bDISPLAY_prediction) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: prediction - Start" << endl;
-		cout << "  delta_t: " << endl << delta_t << endl;
-		cout << "  std_pos: " << endl << std_pos << endl;
-		cout << "  velocity: " << endl << velocity << endl;
-		cout << "  yaw_rate: " << endl << yaw_rate << endl;
+		cout << "  delta_t: " << endl << delta_t << endl << endl;
+		cout << "  std_pos: " << endl << createArrayString(std_pos) << endl;
+		cout << "  velocity: " << endl << velocity << endl << endl;
+		cout << "  yaw_rate: " << endl << yaw_rate << endl << endl;
 	}
 	
 	// move all particles according to measurement
@@ -253,8 +253,8 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: updateWeights - Start" << endl;
-		cout << "  sensor_range: " << endl << sensor_range << endl;
-		cout << "  std_landmark: " << endl << std_landmark << endl;
+		cout << "  sensor_range: " << endl << sensor_range << endl << endl;
+		cout << "  std_landmark: " << endl << createArrayString(std_landmark) << endl;
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
@@ -303,7 +303,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		
 		// associate predicted landmarks to tranformed observations
 		ParticleFilter::dataAssociation(predicted, observations_map, associations, sense_x, sense_y);
-		particles[current_particle] = ParticleFilter::SetAssociations(particles[current_particle], associations, sense_x, sense_y);
+		particles[current_particle] = SetAssociations(particles[current_particle], associations, sense_x, sense_y);
 		
 		// initialize particle weight
 		particles[current_particle].weight = INIT_WEIGHT;
@@ -457,8 +457,8 @@ void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: addNoise - Start" << endl;
 		cout << "  particle: " << endl << createParticleString(particle) << endl;
-		cout << "  mean: " << endl << mean << endl;
-		cout << "  std: " << endl << std << endl;
+		cout << "  mean: " << endl << createArrayString(mean) << endl;
+		cout << "  std: " << endl << createArrayString(std) << endl;
 	}
 	
 	// define Gaussian distribution noise
@@ -520,13 +520,13 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	if (bDISPLAY && bDISPLAY_transformVehicle2Map) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: transformVehicle2Map - Start" << endl;
-		cout << "  x_offset_map: " << endl << x_offset_map << endl;
-		cout << "  y_offset_map: " << endl << y_offset_map << endl;
-		cout << "  x_change_relative: " << endl << x_change_relative << endl;
-		cout << "  y_change_relative: " << endl << y_change_relative << endl;
-		cout << "  alpha: " << endl << alpha << endl;
-		cout << "  x_map: " << endl << x_map << endl;
-		cout << "  y_map: " << endl << y_map << endl;
+		cout << "  x_offset_map: " << endl << x_offset_map << endl << endl;
+		cout << "  y_offset_map: " << endl << y_offset_map << endl << endl;
+		cout << "  x_change_relative: " << endl << x_change_relative << endl << endl;
+		cout << "  y_change_relative: " << endl << y_change_relative << endl << endl;
+		cout << "  alpha: " << endl << alpha << endl << endl;
+		cout << "  x_map: " << endl << x_map << endl << endl;
+		cout << "  y_map: " << endl << y_map << endl << endl;
 	}
 	
 	// transformations
@@ -535,8 +535,8 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_transformVehicle2Map) {
-		cout << "  x_map: " << endl << x_map << endl;
-		cout << "  y_map: " << endl << y_map << endl;
+		cout << "  x_map: " << endl << x_map << endl << endl;
+		cout << "  y_map: " << endl << y_map << endl << endl;
 		cout << "--- PARTICLE_FILTER: transformVehicle2Map - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -554,7 +554,11 @@ std::string ParticleFilter::createParticleString(Particle particle) {
 	text += "id=" + std::to_string(particle.id) + " ";
 	text += "x=" + std::to_string(particle.x) + " ";
 	text += "y=" + std::to_string(particle.y) + " ";
-	text += "theta=" + std::to_string(particle.theta);
+	text += "theta=" + std::to_string(particle.theta) + " ";
+	text += "weight=" + std::to_string(particle.weight) + " ";
+	text += "associations=" + createIntegerVectorString(particle.associations) + " ";
+	text += "sense_x=" + createIntegerVectorString(particle.sense_x) + " ";
+	text += "sense_y=" + createIntegerVectorString(particle.sense_y);
 	
 	// retrun output
 	return text;
@@ -621,11 +625,14 @@ std::string ParticleFilter::createDoubleVectorString(std::vector<double> double_
 	//define variables
 	unsigned int current_element = 0;
 	std::string text = "";
+	std::ostringstream streamObj;
 	
 	// add information about all elements to string
 	for (current_element = 0; current_element < double_vector.size(); current_element++) {
 		
-		text += "Element " + std::to_string(current_element) + ": " + std::to_string(double_vector[current_element]) + "\n";
+		streamObj.erase(0, string::npos);
+		streamObj << double_vector[current_element];
+		text += "Element " + std::to_string(current_element) + ": " + streamObj.str() + "\n";
 		
 	}
 	
@@ -645,6 +652,25 @@ std::string ParticleFilter::createIntegerVectorString(std::vector<int> int_vecto
 	for (current_element = 0; current_element < int_vector.size(); current_element++) {
 		
 		text += "Element " + std::to_string(current_element) + ": " + std::to_string(int_vector[current_element]) + "\n";
+		
+	}
+	
+	// return output
+	return text;
+	
+}
+
+std::string ParticleFilter::createArrayString(auto array[]) {
+	// Function that creates a string for an array
+	
+	//define variables
+	unsigned int current_element = 0;
+	std::string text = "";
+	
+	// add information about all elements to string
+	for (current_element = 0; current_element < array.size(); current_element++) {
+		
+		text += "Element " + std::to_string(current_element) + ": " + std::to_string(array[current_element]) + "\n";
 		
 	}
 	

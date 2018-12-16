@@ -140,7 +140,7 @@ private:
 	const bool bDISPLAY_updateWeights = true;
 	const bool bDISPLAY_resample = true;
 	const bool bDISPLAY_SetAssociations = false;
-	const bool bDISPLAY_addNoise = true;
+	const bool bDISPLAY_addNoise = false;
 	const bool bDISPLAY_getMapLandmark = false;
 	const bool bDISPLAY_transformVehicle2Map = false;
 	
@@ -152,14 +152,14 @@ private:
 	 */
 	void addNoise(Particle& particle, double mean[], double std[]);
 
-		/**
+	/**
 	 * getMapLandmark Get landmark object from map object
 	 * @param num_landmark Number of the landmark
 	 * @param map_landmarks Object containing array of landmark elements [landmark_list] as array of dimension 3 [id_i, x_f, y_f]
 	 */
 	LandmarkObs getMapLandmark(unsigned int num_landmark, Map map_landmarks);
 
-		/**
+	/**
 	 * transformVehicle2Map Transform observation to particle in map coordinates
 	 * @param x_offset_map Particle location in map coordinates (x direction)
 	 * @param y_offset_map Particle location in map coordinates (y direction)
@@ -171,43 +171,49 @@ private:
 	 */
 	void transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double& x_map, double& y_map);
 
-		/**
+	/**
 	 * createParticleString Create string with information about one particle
 	 * @param particle Particle object
 	 */
 	std::string createParticleString(Particle particle);
 
-		/**
+	/**
 	 * createParticlesString Create string with information about all particles
 	 * @param particles List of particle objects
 	 */
 	std::string createParticlesString(std::vector<Particle> particles);
 
-		/**
+	/**
 	 * createLandmarkString Create string with information about one landmark
 	 * @param LandmarkObs Landmark structure
 	 */
 	std::string createLandmarkString(LandmarkObs landmark);
 
-		/**
+	/**
 	 * createLandmarksString Create string with information about all landmarks
 	 * @param landmarks List of landmark structures
 	 */
 	std::string createLandmarksString(std::vector<LandmarkObs> landmarks);
 
-		/**
+	/**
 	 * createDoubleVectorString Create string with information about all doubles in a vector
 	 * @param double_vector Vector of doubles
 	 */
 	std::string createDoubleVectorString(std::vector<double> double_vector);
 
-		/**
+	/**
 	 * createIntegerVectorString Create string with information about all integers in a vector
 	 * @param int_vector Vector of integers
 	 */
 	std::string createIntegerVectorString(std::vector<int> int_vector);
 
-		/**
+	/**
+	 * createArrayString Create string with information about all elements in an array
+	 * @param array Array of some data type
+	 */
+	std::string ParticleFilter::createArrayString(auto array[]);
+
+	/**
 	 * createMapString Create string with information about all landmarks of a map
 	 * @param map Map object with list of landmarks
 	 */
