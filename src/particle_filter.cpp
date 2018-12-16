@@ -613,9 +613,9 @@ std::string ParticleFilter::createParticleString(Particle particle) {
 	text += "y=" + std::to_string(particle.y) + " ";
 	text += "theta=" + std::to_string(particle.theta) + " ";
 	text += "weight=" + std::to_string(particle.weight) + " ";
-	text += "associations=" + "\n" + createIntegerVectorString(particle.associations) + " ";
-	text += "sense_x=" + "\n" + createDoubleVectorString(particle.sense_x) + " ";
-	text += "sense_y=" + "\n" + createDoubleVectorString(particle.sense_y);
+	text += "associations=\n" + createIntegerVectorString(particle.associations) + " ";
+	text += "sense_x=\n" + createDoubleVectorString(particle.sense_x) + " ";
+	text += "sense_y=\n" + createDoubleVectorString(particle.sense_y);
 	
 	// retrun output
 	return text;
