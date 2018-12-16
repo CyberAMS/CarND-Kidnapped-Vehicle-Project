@@ -4,6 +4,9 @@
  * 2D particle filter class.
  *  Created on: Dec 12, 2016
  *      Author: Tiffany Huang
+ *
+ *  Edited/finished by Andre Strobel (December 2018)
+ *
  */
 
 #ifndef PARTICLE_FILTER_H_

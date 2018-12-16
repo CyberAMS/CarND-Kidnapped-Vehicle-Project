@@ -3,6 +3,9 @@
  *
  *  Created on: Dec 12, 2016
  *      Author: Tiffany Huang
+ *
+ *  Edited/finished by Andre Strobel (December 2018)
+ *
  */
 
 #include <random>
@@ -19,8 +22,8 @@
 
 using namespace std;
 
-	// define noise generator
-	static default_random_engine gen;
+// define noise generator
+static default_random_engine gen;
 
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// TODO: Set the number of particles. Initialize all particles to first position (based on estimates of 

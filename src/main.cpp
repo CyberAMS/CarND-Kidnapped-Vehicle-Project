@@ -1,3 +1,7 @@
+/*
+ *  Edited/finished by Andre Strobel (December 2018)
+ */
+
 #include <uWS/uWS.h>
 #include <iostream>
 #include "json.hpp"
