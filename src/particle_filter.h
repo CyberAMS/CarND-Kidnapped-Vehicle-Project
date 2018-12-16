@@ -16,6 +16,8 @@
 #include <string>
 #include "helper_functions.h"
 
+using namespace std;
+
 struct Particle {
 
 	int id;
@@ -173,13 +175,13 @@ private:
 	 * createParticleString Create string with information about one particle
 	 * @param particle Particle object
 	 */
-	string ParticleFilter::createParticleString(Particle particle);
+	std::string ParticleFilter::createParticleString(Particle particle);
 
 		/**
 	 * createParticlesString Create string with information about all particles
 	 * @param particles List of particle objects
 	 */
-	string ParticleFilter::createParticlesString(std::vector<Particle> particles);
+	std::string ParticleFilter::createParticlesString(std::vector<Particle> particles);
 
 };
 

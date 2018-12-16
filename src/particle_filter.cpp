@@ -541,11 +541,11 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	
 }
 
-string ParticleFilter::createParticleString(Particle particle) {
+std::string ParticleFilter::createParticleString(Particle particle) {
 	// Function that creates a string for one particle
 	
 	//define variables
-	string text = "";
+	std::string text = "";
 	
 	// add information about particle to string
 	text += "id " + std::to_string(particle.id);
@@ -558,12 +558,12 @@ string ParticleFilter::createParticleString(Particle particle) {
 	
 }
 
-string ParticleFilter::createParticlesString(std::vector<Particle> particles) {
+std::string ParticleFilter::createParticlesString(std::vector<Particle> particles) {
 	// Function that creates a string for all particles
 	
 	//define variables
 	unsigned int current_particle = 0;
-	string text = "";
+	std::string text = "";
 	
 	// add information about all particles to string
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
