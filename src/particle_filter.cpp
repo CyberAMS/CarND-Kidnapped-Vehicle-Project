@@ -246,6 +246,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	std::vector<int> associations;
 	std::vector<double> sense_x;
 	std::vector<double> sense_y;
+	unsigned int current_observation_map = 0;
 	double observation_weight = INIT_WEIGHT;
 	
 	// display message if required
@@ -261,7 +262,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	// filter for landmarks in sensor distance
 	for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
 		
-		landmark = ParticleFilter::getMapLandmark(current_landmark, map_landmarks);
+		landmark = getMapLandmark(current_landmark, map_landmarks);
 		distance = dist(0, 0, landmark.x, landmark.y);
 		if (distance <= sensor_range) predicted.push_back(landmark);
 		
@@ -269,6 +270,12 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	
 	// update weights for all particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		// reset associations
+		observation_map.clear();
+		associations.clear();
+		sense_x.clear();
+		sense_y.clear();
 		
 		// get data of current particle
 		part_x = particles[current_particle].x;
@@ -284,7 +291,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			obs_y = observations[current_observation].y;
 			
 			// translate observation for particle
-			ParticleFilter::transformVehicle2Map(part_x, part_y, obs_x, obs_y, part_theta, x_map, y_map);
+			transformVehicle2Map(part_x, part_y, obs_x, obs_y, part_theta, x_map, y_map);
 			
 			// save transformed observation
 			observation_map.id = obs_id;
@@ -294,11 +301,6 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			
 		}
 		
-		// reset associations
-		associations.clear();
-		sense_x.clear();
-		sense_y.clear();
-		
 		// associate predicted landmarks to tranformed observations
 		ParticleFilter::dataAssociation(predicted, observations_map, associations, sense_x, sense_y);
 		particles[current_particle] = ParticleFilter::SetAssociations(particles[current_particle], associations, sense_x, sense_y);
@@ -307,10 +309,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		particles[current_particle].weight = INIT_WEIGHT;
 		
 		// calculate weights for each observation
-		for (current_observation = 0; current_observation < observations.size(); current_observation++) {
+		for (current_observation_map = 0; current_observation_map < observations_map.size(); current_observation_map++) {
 			
 			// multiply multi-variate Gaussian values
-			observation_weight = mvg(part_x, part_y, sense_x[current_observation], sense_y[current_observation], std_landmark[0], std_landmark[1]);
+			observation_weight = mvg(predicted[associations[current_observation_map]].x, predicted[associations[current_observation_map]].y, sense_x[current_observation_map], sense_y[current_observation_map], std_landmark[0], std_landmark[1]);
 			if (observation_weight < ZERO_DETECTION) observation_weight = ZERO_DETECTION;
 			particles[current_particle].weight *= observation_weight;
 			
@@ -322,7 +324,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
-		cout << "  observations_map: " << endl << createLandmarksString(observations_map) << endl;
+		cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
