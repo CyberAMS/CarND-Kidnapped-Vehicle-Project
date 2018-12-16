@@ -183,6 +183,18 @@ private:
 	 */
 	std::string createParticlesString(std::vector<Particle> particles);
 
+		/**
+	 * createLandmarkString Create string with information about one landmark
+	 * @param LandmarkObs Landmark structure
+	 */
+	std::string createLandmarkString(LandmarkObs landmark);
+
+		/**
+	 * createLandmarksString Create string with information about all landmarks
+	 * @param landmarks List of landmark structures
+	 */
+	std::string createLandmarksString(std::vector<LandmarkObs> landmarks);
+
 };
 
 #endif /* PARTICLE_FILTER_H_ */
