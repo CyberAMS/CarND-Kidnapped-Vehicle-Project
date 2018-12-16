@@ -549,20 +549,17 @@ std::string ParticleFilter::createDoubleVectorString(std::vector<double> double_
 	
 	//define variables
 	unsigned int current_element = 0;
-	std::string text = "";
 	std::ostringstream streamObj;
 	
 	// add information about all elements to string
 	for (current_element = 0; current_element < double_vector.size(); current_element++) {
 		
-		streamObj.clear();
-		streamObj << double_vector[current_element];
-		text += "Element " + std::to_string(current_element) + ": " + streamObj.str() + "\n";
+		streamObj << "Element " << current_element << ": " + double_vector[current_element] << endl;
 		
 	}
 	
 	// return output
-	return text;
+	return streamObj.str();
 	
 }
 
@@ -590,20 +587,17 @@ std::string ParticleFilter::createArrayString(double array[], unsigned int num_e
 	
 	//define variables
 	unsigned int current_element = 0;
-	std::string text = "";
 	std::ostringstream streamObj;
 	
 	// add information about all elements to string
 	for (current_element = 0; current_element < num_elements; current_element++) {
 		
-		streamObj.clear();
-		streamObj << array[current_element];
-		text += "Element " + std::to_string(current_element) + ": " + streamObj.str() + "\n";
+		streamObj << "Element " << current_element << ": " + array[current_element] << endl;
 		
 	}
 	
 	// return output
-	return text;
+	return streamObj.str();
 	
 }
 
@@ -619,9 +613,9 @@ std::string ParticleFilter::createParticleString(Particle particle) {
 	text += "y=" + std::to_string(particle.y) + " ";
 	text += "theta=" + std::to_string(particle.theta) + " ";
 	text += "weight=" + std::to_string(particle.weight) + " ";
-	text += "associations=" + createIntegerVectorString(particle.associations) + " ";
-	text += "sense_x=" + createDoubleVectorString(particle.sense_x) + " ";
-	text += "sense_y=" + createDoubleVectorString(particle.sense_y);
+	text += "associations=" + "\n" + createIntegerVectorString(particle.associations) + " ";
+	text += "sense_x=" + "\n" + createDoubleVectorString(particle.sense_x) + " ";
+	text += "sense_y=" + "\n" + createDoubleVectorString(particle.sense_y);
 	
 	// retrun output
 	return text;
