@@ -186,8 +186,9 @@ private:
 	/**
 	 * createArrayString Create string with information about all elements in a double array
 	 * @param array Array of doubles
+	 * @param num_elements Number of elements in array
 	 */
-	std::string createArrayString(double array[]);
+	std::string createArrayString(double array[], unsigned int num_elements);
 
 	/**
 	 * createParticleString Create string with information about one particle

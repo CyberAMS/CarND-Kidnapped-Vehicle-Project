@@ -42,7 +42,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 		cout << "  x: " << endl << x << endl << endl;
 		cout << "  y: " << endl << y << endl << endl;
 		cout << "  theta: " << endl << theta << endl << endl;
-		cout << "  std: " << endl << createArrayString(std) << endl;
+		cout << "  std: " << endl << createArrayString(std, 3) << endl;
 	}
 	
 	// define number of particles
@@ -99,7 +99,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: prediction - Start" << endl;
 		cout << "  delta_t: " << endl << delta_t << endl << endl;
-		cout << "  std_pos: " << endl << createArrayString(std_pos) << endl;
+		cout << "  std_pos: " << endl << createArrayString(std_pos, 3) << endl;
 		cout << "  velocity: " << endl << velocity << endl << endl;
 		cout << "  yaw_rate: " << endl << yaw_rate << endl << endl;
 	}
@@ -254,7 +254,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: updateWeights - Start" << endl;
 		cout << "  sensor_range: " << endl << sensor_range << endl << endl;
-		cout << "  std_landmark: " << endl << createArrayString(std_landmark) << endl;
+		cout << "  std_landmark: " << endl << createArrayString(std_landmark, 2) << endl;
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
@@ -457,8 +457,8 @@ void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: addNoise - Start" << endl;
 		cout << "  particle: " << endl << createParticleString(particle) << endl;
-		cout << "  mean: " << endl << createArrayString(mean) << endl;
-		cout << "  std: " << endl << createArrayString(std) << endl;
+		cout << "  mean: " << endl << createArrayString(mean, 3) << endl;
+		cout << "  std: " << endl << createArrayString(std, 3) << endl;
 	}
 	
 	// define Gaussian distribution noise
@@ -585,7 +585,7 @@ std::string ParticleFilter::createIntegerVectorString(std::vector<int> int_vecto
 	
 }
 
-std::string ParticleFilter::createArrayString(double array[]) {
+std::string ParticleFilter::createArrayString(double array[], unsigned int num_elements) {
 	// Function that creates a string for an array
 	
 	//define variables
@@ -594,7 +594,7 @@ std::string ParticleFilter::createArrayString(double array[]) {
 	std::ostringstream streamObj;
 	
 	// add information about all elements to string
-	for (current_element = 0; current_element < (unsigned int) (sizeof(array) / sizeof(*array)); current_element++) {
+	for (current_element = 0; current_element < num_elements; current_element++) {
 		
 		streamObj.clear();
 		streamObj << array[current_element];
