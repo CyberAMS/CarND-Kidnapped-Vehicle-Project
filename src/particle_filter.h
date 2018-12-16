@@ -168,10 +168,16 @@ private:
 	void transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double& x_map, double& y_map);
 
 		/**
-	 * printParticles Print information about all particles
+	 * createParticleString Create string with information about one particle
+	 * @param particle Particle object
+	 */
+	String ParticleFilter::createParticleString(Particle particle);
+
+		/**
+	 * createParticlesString Create string with information about all particles
 	 * @param particles List of particle objects
 	 */
-	void printParticles(std::vector<Particle> particles);
+	String ParticleFilter::createParticlesString(std::vector<Particle> particles);
 
 };
 
