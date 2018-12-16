@@ -30,8 +30,8 @@ std::string hasData(std::string s) {
 }
 
 // define constants
-const bool bFILEOUTPUT = true;
-const bool bDISPLAY = true;
+const bool bFILEOUTPUT = false;
+const bool bDISPLAY = false;
 
 // define file for redirecting standard output and append
 ofstream out("out.txt", fstream::app);
