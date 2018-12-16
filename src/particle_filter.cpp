@@ -46,7 +46,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 		particle.weight = INIT_WEIGHT;
 		
 		// add noise to current particle
-		ParticleFilter::addNoise(particle, ZERO_MEAN, std);
+		addNoise(particle, ZERO_MEAN, std);
 		
 		// add current particle to particle vector
 		particles.push_back(particle);
@@ -100,7 +100,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		}
 		
 		// add noise to current particle
-		ParticleFilter::addNoise(particles[current_particle], ZERO_MEAN, std);
+		addNoise(particles[current_particle], ZERO_MEAN, std);
 	}
 	
 }
@@ -175,6 +175,8 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	double obs_id = 0;
 	double obs_x = 0;
 	double obs_y = 0;
+	double x_map = 0;
+	double y_map = 0;
 	LandmarkObs observation_map;
 	std::vector<LandmarkObs> observations_map;
 	std::vector<int> associations;
