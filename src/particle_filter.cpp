@@ -548,10 +548,10 @@ std::string ParticleFilter::createParticleString(Particle particle) {
 	std::string text = "";
 	
 	// add information about particle to string
-	text += "id " + std::to_string(particle.id);
-	text += "x " + std::to_string(particle.x);
-	text += "y " + std::to_string(particle.y);
-	text += "theta " + std::to_string(particle.theta);
+	text += "id=" + std::to_string(particle.id) + " ";
+	text += "x=" + std::to_string(particle.x) + " ";
+	text += "y=" + std::to_string(particle.y) + " ";
+	text += "theta=" + std::to_string(particle.theta);
 	
 	// retrun output
 	return text;

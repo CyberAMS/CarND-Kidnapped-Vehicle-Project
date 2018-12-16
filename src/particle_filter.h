@@ -142,7 +142,7 @@ private:
 	const bool bDISPLAY_SetAssociations = true;
 	const bool bDISPLAY_addNoise = true;
 	const bool bDISPLAY_getMapLandmark = true;
-	const bool bDISPLAY_transformVehicle2Map = true;
+	const bool bDISPLAY_transformVehicle2Map = false;
 	
 	/**
 	 * addNoise Adds noise to single particle

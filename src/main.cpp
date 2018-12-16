@@ -30,15 +30,15 @@ std::string hasData(std::string s) {
 }
 
 // define constants
-const bool bFILEOUTPUT = false;
-const bool bDISPLAY = false;
-
-// define file for redirecting standard output and append
-ofstream out("out.txt", fstream::app);
-streambuf *coutbuf = cout.rdbuf(); // save screen object
+const bool bFILEOUTPUT = true;
+const bool bDISPLAY = true;
 
 int main()
 {
+	
+	// define file for redirecting standard output and append
+	ofstream out("out.txt", fstream::app);
+	streambuf *coutbuf = cout.rdbuf(); // save screen object
 	
 	uWS::Hub h;
 	
@@ -172,11 +172,12 @@ int main()
 					msgJson["best_particle_sense_y"] = pf.getSenseY(best_particle);
 					
 					auto msg = "42[\"best_particle\"," + msgJson.dump() + "]";
-					std::cout << msg << std::endl; // was commented out !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					// std::cout << msg << std::endl;
 					ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
 					
 					// display message if required
 					if (bDISPLAY) {
+						cout << "  msg: " << endl << msg << endl;
 						cout << "--- MAIN: onMessage - End" << endl;
 						cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 					}
