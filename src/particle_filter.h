@@ -172,6 +172,24 @@ private:
 	void transformVehicle2Map(double x_offset_map, double y_offset_map, double x_change_relative, double y_change_relative, double alpha, double& x_map, double& y_map);
 
 	/**
+	 * createDoubleVectorString Create string with information about all doubles in a vector
+	 * @param double_vector Vector of doubles
+	 */
+	std::string createDoubleVectorString(std::vector<double> double_vector);
+
+	/**
+	 * createIntegerVectorString Create string with information about all integers in a vector
+	 * @param int_vector Vector of integers
+	 */
+	std::string createIntegerVectorString(std::vector<int> int_vector);
+
+	/**
+	 * createArrayString Create string with information about all elements in a double array
+	 * @param array Array of doubles
+	 */
+	std::string createArrayString(double array[]);
+
+	/**
 	 * createParticleString Create string with information about one particle
 	 * @param particle Particle object
 	 */
@@ -194,24 +212,6 @@ private:
 	 * @param landmarks List of landmark structures
 	 */
 	std::string createLandmarksString(std::vector<LandmarkObs> landmarks);
-
-	/**
-	 * createDoubleVectorString Create string with information about all doubles in a vector
-	 * @param double_vector Vector of doubles
-	 */
-	std::string createDoubleVectorString(std::vector<double> double_vector);
-
-	/**
-	 * createIntegerVectorString Create string with information about all integers in a vector
-	 * @param int_vector Vector of integers
-	 */
-	std::string createIntegerVectorString(std::vector<int> int_vector);
-
-	/**
-	 * createArrayString Create string with information about all elements in an array
-	 * @param array Array of some data type
-	 */
-	std::string createArrayString(double array[]);
 
 	/**
 	 * createMapString Create string with information about all landmarks of a map

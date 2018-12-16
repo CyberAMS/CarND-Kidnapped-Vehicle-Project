@@ -544,81 +544,6 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	
 }
 
-std::string ParticleFilter::createParticleString(Particle particle) {
-	// Function that creates a string for one particle
-	
-	//define variables
-	std::string text = "";
-	
-	// add information about particle to string
-	text += "id=" + std::to_string(particle.id) + " ";
-	text += "x=" + std::to_string(particle.x) + " ";
-	text += "y=" + std::to_string(particle.y) + " ";
-	text += "theta=" + std::to_string(particle.theta) + " ";
-	text += "weight=" + std::to_string(particle.weight) + " ";
-	text += "associations=" + createIntegerVectorString(particle.associations) + " ";
-	text += "sense_x=" + createIntegerVectorString(particle.sense_x) + " ";
-	text += "sense_y=" + createIntegerVectorString(particle.sense_y);
-	
-	// retrun output
-	return text;
-	
-}
-
-std::string ParticleFilter::createParticlesString(std::vector<Particle> particles) {
-	// Function that creates a string for all particles
-	
-	//define variables
-	unsigned int current_particle = 0;
-	std::string text = "";
-	
-	// add information about all particles to string
-	for (current_particle = 0; current_particle < num_particles; current_particle++) {
-		
-		text += "Particle " + std::to_string(current_particle) + ": " + createParticleString(particles[current_particle]) + "\n";
-		
-	}
-	
-	// return output
-	return text;
-	
-}
-
-std::string ParticleFilter::createLandmarkString(LandmarkObs landmark) {
-	// Function that creates a string for one landmark
-	
-	//define variables
-	std::string text = "";
-	
-	// add information about particle to string
-	text += "id=" + std::to_string(landmark.id) + " ";
-	text += "x=" + std::to_string(landmark.x) + " ";
-	text += "y=" + std::to_string(landmark.y);
-	
-	// retrun output
-	return text;
-	
-}
-
-std::string ParticleFilter::createLandmarksString(std::vector<LandmarkObs> landmarks) {
-	// Function that creates a string for all landmarks
-	
-	//define variables
-	unsigned int current_landmark = 0;
-	std::string text = "";
-	
-	// add information about all particles to string
-	for (current_landmark = 0; current_landmark < landmarks.size(); current_landmark++) {
-		
-		text += "Landmark " + std::to_string(current_landmark) + ": " + createLandmarkString(landmarks[current_landmark]) + "\n";
-		
-	}
-	
-	// return output
-	return text;
-	
-}
-
 std::string ParticleFilter::createDoubleVectorString(std::vector<double> double_vector) {
 	// Function that creates a string for a vector of doubles
 	
@@ -674,6 +599,81 @@ std::string ParticleFilter::createArrayString(double array[]) {
 		streamObj.clear();
 		streamObj << array[current_element];
 		text += "Element " + std::to_string(current_element) + ": " + streamObj.str() + "\n";
+		
+	}
+	
+	// return output
+	return text;
+	
+}
+
+std::string ParticleFilter::createParticleString(Particle particle) {
+	// Function that creates a string for one particle
+	
+	//define variables
+	std::string text = "";
+	
+	// add information about particle to string
+	text += "id=" + std::to_string(particle.id) + " ";
+	text += "x=" + std::to_string(particle.x) + " ";
+	text += "y=" + std::to_string(particle.y) + " ";
+	text += "theta=" + std::to_string(particle.theta) + " ";
+	text += "weight=" + std::to_string(particle.weight) + " ";
+	text += "associations=" + createIntegerVectorString(particle.associations) + " ";
+	text += "sense_x=" + createDoubleVectorString(particle.sense_x) + " ";
+	text += "sense_y=" + createDoubleVectorString(particle.sense_y);
+	
+	// retrun output
+	return text;
+	
+}
+
+std::string ParticleFilter::createParticlesString(std::vector<Particle> particles) {
+	// Function that creates a string for all particles
+	
+	//define variables
+	unsigned int current_particle = 0;
+	std::string text = "";
+	
+	// add information about all particles to string
+	for (current_particle = 0; current_particle < num_particles; current_particle++) {
+		
+		text += "Particle " + std::to_string(current_particle) + ": " + createParticleString(particles[current_particle]) + "\n";
+		
+	}
+	
+	// return output
+	return text;
+	
+}
+
+std::string ParticleFilter::createLandmarkString(LandmarkObs landmark) {
+	// Function that creates a string for one landmark
+	
+	//define variables
+	std::string text = "";
+	
+	// add information about particle to string
+	text += "id=" + std::to_string(landmark.id) + " ";
+	text += "x=" + std::to_string(landmark.x) + " ";
+	text += "y=" + std::to_string(landmark.y);
+	
+	// retrun output
+	return text;
+	
+}
+
+std::string ParticleFilter::createLandmarksString(std::vector<LandmarkObs> landmarks) {
+	// Function that creates a string for all landmarks
+	
+	//define variables
+	unsigned int current_landmark = 0;
+	std::string text = "";
+	
+	// add information about all particles to string
+	for (current_landmark = 0; current_landmark < landmarks.size(); current_landmark++) {
+		
+		text += "Landmark " + std::to_string(current_landmark) + ": " + createLandmarkString(landmarks[current_landmark]) + "\n";
 		
 	}
 	
