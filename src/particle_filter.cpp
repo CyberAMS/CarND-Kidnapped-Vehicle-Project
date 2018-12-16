@@ -272,7 +272,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
 		// reset associations
-		observation_map.clear();
+		observations_map.clear();
 		associations.clear();
 		sense_x.clear();
 		sense_y.clear();
