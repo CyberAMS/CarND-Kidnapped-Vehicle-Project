@@ -322,6 +322,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
+		cout << "  observations_map: " << endl << createLandmarksString(observations_map) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;

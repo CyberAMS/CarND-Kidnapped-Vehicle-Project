@@ -128,7 +128,7 @@ public:
 private:
 
 	// define constants
-	const int NUM_PARTICLES = 100;
+	const int NUM_PARTICLES = 2 // 100;
 	const double INIT_WEIGHT = 1;
 	const double ZERO_DETECTION = 1e-6;
 	double ZERO_MEAN [3] = {0, 0, 0};
@@ -136,10 +136,10 @@ private:
 	const bool bDISPLAY = true;
 	const bool bDISPLAY_init = true;
 	const bool bDISPLAY_prediction = true;
-	const bool bDISPLAY_dataAssociation = true;
+	const bool bDISPLAY_dataAssociation = false;
 	const bool bDISPLAY_updateWeights = true;
 	const bool bDISPLAY_resample = true;
-	const bool bDISPLAY_SetAssociations = true;
+	const bool bDISPLAY_SetAssociations = false;
 	const bool bDISPLAY_addNoise = true;
 	const bool bDISPLAY_getMapLandmark = true;
 	const bool bDISPLAY_transformVehicle2Map = false;
