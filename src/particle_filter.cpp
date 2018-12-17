@@ -246,6 +246,9 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	std::vector<double> sense_x;
 	std::vector<double> sense_y;
 	unsigned int current_observation_map = 0;
+	unsigned int current_predicted = 0;
+	double pred_x = 0;
+	double pred_y = 0;
 	double observation_weight = INIT_WEIGHT;
 	
 	// display message if required
@@ -310,10 +313,24 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		// calculate weights for each observation
 		for (current_observation_map = 0; current_observation_map < observations_map.size(); current_observation_map++) {
 			
+			// search for predicted landmark with associated id to current observation
+			for (current_predicted = 0; current_predicted < predicted.size(); current_predicted++) {
+				
+				// correct predicted landmark found
+				if (predicted[current_predicted].id == associations[current_observation_map]) {
+					
+					// use x and y values for weight calculation
+					pred_x = predicted[current_predicted].x;
+					pred_y = predicted[current_predicted].y;
+					
+				}
+				
+			}
+			
 			// multiply multi-variate Gaussian values
-			observation_weight = mvg(predicted[associations[current_observation_map]].x, predicted[associations[current_observation_map]].y, sense_x[current_observation_map], sense_y[current_observation_map], std_landmark[0], std_landmark[1]);
+			observation_weight = mvg(pred_x, pred_y, sense_x[current_observation_map], sense_y[current_observation_map], std_landmark[0], std_landmark[1]);
 			// DEBUGGING ONLY - Start
-			cout << "DEBUG mvg: xp=" << predicted[associations[current_observation_map]].x << " yp=" << predicted[associations[current_observation_map]].y << " sense_x=" << sense_x[current_observation_map] << " sense_y=" << sense_y[current_observation_map] << " std0=" << std_landmark[0] << " std1=" << std_landmark[1] << endl;
+			cout << "DEBUG mvg: pred_x=" << pred_x << " pred_y=" << pred_y << " sense_x=" << sense_x[current_observation_map] << " sense_y=" << sense_y[current_observation_map] << " std0=" << std_landmark[0] << " std1=" << std_landmark[1] << endl;
 			cout << "DEBUG current_observation_map=" << current_observation_map << " observation_weight=" << observation_weight << endl;
 			// DEBUGGING ONLY - End
 			if (observation_weight < ZERO_DETECTION) observation_weight = ZERO_DETECTION;
