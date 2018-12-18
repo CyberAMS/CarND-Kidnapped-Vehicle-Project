@@ -49,22 +49,69 @@ int main()
 		const double INIT_x = 0;
 		const double INIT_y = 2.5;
 		const double INIT_theta = 0 * M_PI / 1;
+		const double INPUT_velocity [num_debug_steps] = {100, 100, 100, 100, 100};
+		const double INPUT_yawrate [num_debug_steps] = {0, 0, 0, 0, 0};
+		const unsigned int num_landmarks = 10;
+		const float MAP_x [num_landmarks] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180};
+		const float MAP_y [num_landmarks] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+		const unsigned int num_observations = 4;
+		const float IDEAL_MEASURE_x [num_observations][num_debug_steps] = 
+			{
+				{0, 20, 20, 0},
+				{-10, 10, 10, -10},
+				{0, 20, 20, 0},
+				{-10, 10, 10, -10},
+				{0, 20, 20, 0}
+			};
+		const float IDEAL_MEASURE_y [num_sensors][num_debug_steps] = 
+			{
+				{-2.5, -2.5, 7.5, 7.5},
+				{-2.5, -2.5, 7.5, 7.5},
+				{-2.5, -2.5, 7.5, 7.5},
+				{-2.5, -2.5, 7.5, 7.5},
+				{-2.5, -2.5, 7.5, 7.5}
+			};
 		
 		// define variables
+		Map map;
+		unsigned int current_landmark = 0;
+		Map::single_landmark_s new_landmark;
+		vector<LandmarkObs> noisy_observations;
 		unsigned int current_debug_step = 0;
 		double sense_x = 0:
 		double sense_y = 0;
 		double sense_theta = 0;
 		double sigma_pos [3] = {0.3, 0.3, 0.01};
 		double delta_t = 0.1;
-		double sensor_range = 50; // Sensor range [m]
-		double sigma_landmark [2] = {0.3, 0.3}; // Landmark measurement uncertainty [x [m], y [m]]		
 		double previous_velocity = 0;
 		double previous_yawrate = 0;
+		vector<LandmarkObs> noisy_observations;
+		unsigned int current_observation = 0;
+		LandmarkObs noisy_observation;
+		normal_distribution<double> nd_x(0, sigma_pos[0]);
+		normal_distribution<double> nd_y(0, sigma_pos[1]);
+		double sensor_range = 50;
+		double sigma_landmark [2] = {0.3, 0.3};
 		
-		// Create particle filter
+		
+		// define noise generator
+		static default_random_engine gen;
+		
+		// create particle filter
 		ParticleFilter pf;
+		
+		// create map
+		for (current_landmark = 0; current_landmark < num_landmarks; current_landmark++) {
 			
+			new_landmark.id_i = current_landmark;
+			new_landmark.x_f = MAP_x[current_landmark];
+			new_landmark.y_f = MAP_y[current_landmark];
+			
+			map.landmark_list.push_back(new_landmark);
+			
+		}
+		
+		// loop through all time steps
 		for (current_debug_step = 0; current_debug_step < num_debug_steps; current_debug_step++) {
 			
 			// init or predict
@@ -73,19 +120,34 @@ int main()
 				sense_x = INIT_x;
 				sense_y = INIT_y;
 				sense_theta = INIT_theta;
-								
+				
 				pf.init(sense_x, sense_y, sense_theta, sigma_pos);
 				
 			}
 			else {
-				// Predict the vehicle's next state from previous (noiseless control) data.
 				
-				double previous_velocity = std::stod(j[1]["previous_velocity"].get<std::string>());
-				double previous_yawrate = std::stod(j[1]["previous_yawrate"].get<std::string>());
+				previous_velocity = INPUT_velocity[current_debug_step];
+				previous_yawrate = INPUT_yawrate[current_debug_step];
 				
 				pf.prediction(delta_t, sigma_pos, previous_velocity, previous_yawrate);
 				
 			}
+			
+			noisy_observations.clear();
+			
+			for (current_observation = 0; current_observation < num_observations; current_observation++) {
+				
+				noisy_observation.id = current_observation;
+				noisy_observation.x = IDEAL_MEASURE_x[current_observation][current_debug_step] + nd_x(gen);
+				noisy_observation.y = IDEAL_MEASURE_y[current_observation][current_debug_step] + nd_y(gen);
+				
+				noisy_observations.push_back(noisy_observation);
+				
+			}
+			
+			// update the weights and resample
+			pf.updateWeights(sensor_range, sigma_landmark, noisy_observations, map);
+			pf.resample();
 			
 		}
 		
