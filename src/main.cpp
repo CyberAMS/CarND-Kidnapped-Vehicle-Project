@@ -45,12 +45,12 @@ int main()
 	if (bTEST) {
 		
 		// define constants
-		const unsigned int num_debug_steps = 2;
+		const unsigned int num_debug_steps = 3;
 		const double INIT_x = 0;
 		const double INIT_y = 2.5;
 		const double INIT_theta = 0 * M_PI / 1;
-		const double INPUT_velocity [num_debug_steps] = {100, 100, 100, 100, 100};
-		const double INPUT_yawrate [num_debug_steps] = {0, 0, 0, 0, 0};
+		const double INPUT_velocity [num_debug_steps] = {100, 100, 100};
+		const double INPUT_yawrate [num_debug_steps] = {0, 0, 0};
 		const unsigned int num_landmarks = 10;
 		const float MAP_x [num_landmarks] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180};
 		const float MAP_y [num_landmarks] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
@@ -59,15 +59,11 @@ int main()
 				{0, 20, 20, 0},
 				{-10, 10, 10, -10},
 				{0, 20, 20, 0},
-				{-10, 10, 10, -10},
-				{0, 20, 20, 0}
 			};
 		const float IDEAL_MEASURE_y [num_debug_steps][num_observations] = {
 				{-2.5, -2.5, 7.5, 7.5},
 				{-2.5, -2.5, 7.5, 7.5},
 				{-2.5, -2.5, 7.5, 7.5},
-				{-2.5, -2.5, 7.5, 7.5},
-				{-2.5, -2.5, 7.5, 7.5}
 			};
 		
 		// define variables
