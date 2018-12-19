@@ -45,7 +45,7 @@ int main()
 	if (bTEST) {
 		
 		// define constants
-		const unsigned int num_debug_steps = 5;
+		const unsigned int num_debug_steps = 2;
 		const double INIT_x = 0;
 		const double INIT_y = 2.5;
 		const double INIT_theta = 0 * M_PI / 1;
