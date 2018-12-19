@@ -90,6 +90,10 @@ int main()
 		double sensor_range = 50;
 		double sigma_landmark [2] = {0.3, 0.3};
 		
+		// redirect standard output to file if necessary
+		if (bFILEOUTPUT) {
+			cout.rdbuf(out.rdbuf());
+		}
 		
 		// define noise generator
 		static default_random_engine gen;
@@ -146,6 +150,11 @@ int main()
 			pf.updateWeights(sensor_range, sigma_landmark, noisy_observations, map);
 			pf.resample();
 			
+		}
+		
+		// set standard output to screen if necessary
+		if (bFILEOUTPUT) {
+			cout.rdbuf(coutbuf);
 		}
 		
 	}
