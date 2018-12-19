@@ -346,9 +346,6 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		
 	}
 	
-		
-	}
-	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
