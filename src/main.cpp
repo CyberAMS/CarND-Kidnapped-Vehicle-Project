@@ -55,16 +55,14 @@ int main()
 		const float MAP_x [num_landmarks] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180};
 		const float MAP_y [num_landmarks] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
 		const unsigned int num_observations = 4;
-		const float IDEAL_MEASURE_x [num_observations][num_debug_steps] = 
-			{
+		const float IDEAL_MEASURE_x [num_observations][num_debug_steps] = {
 				{0, 20, 20, 0},
 				{-10, 10, 10, -10},
 				{0, 20, 20, 0},
 				{-10, 10, 10, -10},
 				{0, 20, 20, 0}
 			};
-		const float IDEAL_MEASURE_y [num_sensors][num_debug_steps] = 
-			{
+		const float IDEAL_MEASURE_y [num_observations][num_debug_steps] = {
 				{-2.5, -2.5, 7.5, 7.5},
 				{-2.5, -2.5, 7.5, 7.5},
 				{-2.5, -2.5, 7.5, 7.5},
@@ -76,9 +74,8 @@ int main()
 		Map map;
 		unsigned int current_landmark = 0;
 		Map::single_landmark_s new_landmark;
-		vector<LandmarkObs> noisy_observations;
 		unsigned int current_debug_step = 0;
-		double sense_x = 0:
+		double sense_x = 0;
 		double sense_y = 0;
 		double sense_theta = 0;
 		double sigma_pos [3] = {0.3, 0.3, 0.01};
