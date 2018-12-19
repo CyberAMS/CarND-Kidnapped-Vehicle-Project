@@ -51,9 +51,9 @@ int main()
 		const double INIT_theta = 0 * M_PI / 1;
 		const double INPUT_velocity [num_debug_steps] = {100, 100, 100};
 		const double INPUT_yawrate [num_debug_steps] = {0, 0, 0};
-		const unsigned int num_landmarks = 10;
-		const float MAP_x [num_landmarks] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180};
-		const float MAP_y [num_landmarks] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+		const unsigned int num_landmarks = 20;
+		const float MAP_x [num_landmarks] = {0, 0, 20, 20, 40, 40, 60, 60, 80, 80, 100, 100, 120, 120, 140, 140, 160, 160, 180, 180};
+		const float MAP_y [num_landmarks] = {0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10};
 		const unsigned int num_observations = 4;
 		const float IDEAL_MEASURE_x [num_debug_steps][num_observations] = {
 				{0, 20, 20, 0},
@@ -135,8 +135,8 @@ int main()
 			for (current_observation = 0; current_observation < num_observations; current_observation++) {
 				
 				noisy_observation.id = current_observation;
-				noisy_observation.x = IDEAL_MEASURE_x[current_observation][current_debug_step] + nd_x(gen);
-				noisy_observation.y = IDEAL_MEASURE_y[current_observation][current_debug_step] + nd_y(gen);
+				noisy_observation.x = IDEAL_MEASURE_x[current_debug_step][current_observation] + nd_x(gen);
+				noisy_observation.y = IDEAL_MEASURE_y[current_debug_step][current_observation] + nd_y(gen);
 				
 				noisy_observations.push_back(noisy_observation);
 				
