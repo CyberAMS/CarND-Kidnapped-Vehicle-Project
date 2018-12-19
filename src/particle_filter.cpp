@@ -270,6 +270,9 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		
 	}
 	
+	// remove all previous weights
+	weights.clear();
+	
 	// update weights for all particles
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
@@ -304,7 +307,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		}
 		
 		// associate predicted landmarks to tranformed observations
-		ParticleFilter::dataAssociation(predicted, observations_map, associations, sense_x, sense_y);
+		dataAssociation(predicted, observations_map, associations, sense_x, sense_y);
 		particles[current_particle] = SetAssociations(particles[current_particle], associations, sense_x, sense_y);
 		
 		// initialize particle weight
@@ -338,6 +341,12 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			
 		}
 		
+		// store current weight also in weight structure in particle filter object
+		weights.push_back(particles[current_particle].weight);
+		
+	}
+	
+		
 	}
 	
 	// display message if required
@@ -360,7 +369,6 @@ void ParticleFilter::resample() {
 	
 	// define variables
 	unsigned int current_particle = 0;
-	std::vector<double> weights;
 	std::vector<Particle> new_particles;
 	
 	// display message if required
@@ -368,13 +376,6 @@ void ParticleFilter::resample() {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: resample - Start" << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
-	}
-	
-	// get all particle weights
-	for (current_particle = 0; current_particle < num_particles; current_particle++) {
-		
-		weights.push_back(particles[current_particle].weight);
-		
 	}
 	
 	// define discrete distribution based on weights
@@ -392,7 +393,7 @@ void ParticleFilter::resample() {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_resample) {
-		cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
+		cout << "  weights: " << endl << createDoubleVectorString(particles.weights) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: resample - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
