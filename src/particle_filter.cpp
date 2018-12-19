@@ -390,7 +390,7 @@ void ParticleFilter::resample() {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_resample) {
-		cout << "  weights: " << endl << createDoubleVectorString(particles.weights) << endl;
+		cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: resample - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
