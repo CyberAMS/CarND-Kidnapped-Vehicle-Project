@@ -55,14 +55,14 @@ int main()
 		const float MAP_x [num_landmarks] = {0, 20, 40, 60, 80, 100, 120, 140, 160, 180};
 		const float MAP_y [num_landmarks] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
 		const unsigned int num_observations = 4;
-		const float IDEAL_MEASURE_x [num_observations][num_debug_steps] = {
+		const float IDEAL_MEASURE_x [num_debug_steps][num_observations] = {
 				{0, 20, 20, 0},
 				{-10, 10, 10, -10},
 				{0, 20, 20, 0},
 				{-10, 10, 10, -10},
 				{0, 20, 20, 0}
 			};
-		const float IDEAL_MEASURE_y [num_observations][num_debug_steps] = {
+		const float IDEAL_MEASURE_y [num_debug_steps][num_observations] = {
 				{-2.5, -2.5, 7.5, 7.5},
 				{-2.5, -2.5, 7.5, 7.5},
 				{-2.5, -2.5, 7.5, 7.5},
