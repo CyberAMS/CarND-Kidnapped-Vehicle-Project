@@ -31,7 +31,7 @@ std::string hasData(std::string s) {
 }
 
 // define constants
-const bool bFILEOUTPUT = false;
+const bool bFILEOUTPUT = true;
 const bool bDISPLAY = true;
 const bool bTEST = true;
 
