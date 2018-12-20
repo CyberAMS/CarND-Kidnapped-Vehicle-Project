@@ -261,6 +261,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
 	cout << "  observations: " << endl << createLandmarksString(observations) << endl;
+	cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	
 	// filter for landmarks in sensor distance
 	for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
@@ -357,6 +358,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
 	}
+	cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 	
 }
 
