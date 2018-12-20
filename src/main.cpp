@@ -284,6 +284,7 @@ int main()
 						
 						//Optional message data used for debugging particle's sensing and associations
 						msgJson["best_particle_associations"] = pf.getAssociations(best_particle);
+						std::cout << "associations " << pf.getAssociations(best_particle) << endl;
 						msgJson["best_particle_sense_x"] = pf.getSenseX(best_particle);
 						msgJson["best_particle_sense_y"] = pf.getSenseY(best_particle);
 						
