@@ -333,8 +333,8 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			// multiply multi-variate Gaussian values
 			observation_weight = mvg(pred_x, pred_y, sense_x[current_observation_map], sense_y[current_observation_map], std_landmark[0], std_landmark[1]);
 			// DEBUGGING ONLY - Start
-			cout << "DEBUG mvg: pred_x=" << pred_x << " pred_y=" << pred_y << " sense_x=" << sense_x[current_observation_map] << " sense_y=" << sense_y[current_observation_map] << " std0=" << std_landmark[0] << " std1=" << std_landmark[1] << endl;
-			cout << "DEBUG current_observation_map=" << current_observation_map << " observation_weight=" << observation_weight << endl;
+			//cout << "DEBUG mvg: pred_x=" << pred_x << " pred_y=" << pred_y << " sense_x=" << sense_x[current_observation_map] << " sense_y=" << sense_y[current_observation_map] << " std0=" << std_landmark[0] << " std1=" << std_landmark[1] << endl;
+			//cout << "DEBUG current_observation_map=" << current_observation_map << " observation_weight=" << observation_weight << endl;
 			// DEBUGGING ONLY - End
 			if (observation_weight < ZERO_DETECTION) observation_weight = ZERO_DETECTION;
 			particles[current_particle].weight *= observation_weight;
