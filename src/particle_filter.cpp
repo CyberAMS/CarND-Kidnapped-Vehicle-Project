@@ -168,7 +168,6 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
 		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 	}
-	cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 	
 	// find nearest predicted landmark for all observed landmarks
 	for (current_observation = 0; current_observation < observations.size(); current_observation++) {
@@ -261,6 +260,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
+	cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 	
 	// filter for landmarks in sensor distance
 	for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
