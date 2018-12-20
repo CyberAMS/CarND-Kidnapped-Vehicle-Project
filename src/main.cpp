@@ -100,7 +100,7 @@ int main()
 		// create map
 		for (current_landmark = 0; current_landmark < num_landmarks; current_landmark++) {
 			
-			new_landmark.id_i = current_landmark;
+			new_landmark.id_i = current_landmark + 1;
 			new_landmark.x_f = MAP_x[current_landmark];
 			new_landmark.y_f = MAP_y[current_landmark];
 			
@@ -134,7 +134,7 @@ int main()
 			
 			for (current_observation = 0; current_observation < num_observations; current_observation++) {
 				
-				noisy_observation.id = current_observation;
+				noisy_observation.id = 0;
 				noisy_observation.x = IDEAL_MEASURE_x[current_debug_step][current_observation] + nd_x(gen);
 				noisy_observation.y = IDEAL_MEASURE_y[current_debug_step][current_observation] + nd_y(gen);
 				
