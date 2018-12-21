@@ -127,9 +127,9 @@ private:
 
 	// define constants
 	const int NUM_PARTICLES = 100; // 20  (for test purposes)
-	const double INIT_WEIGHT = 1;
+	const double INIT_WEIGHT = 1.0;
 	const double ZERO_DETECTION = 1e-6;
-	double ZERO_MEAN [3] = {0, 0, 0};
+	double ZERO_MEAN [3] = {0.0, 0.0, 0.0};
 	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
 	const bool bDISPLAY = false;
 	const bool bDISPLAY_init = true;

@@ -88,10 +88,10 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	
 	// define variables
 	unsigned int current_particle = 0;
-	double theta_0 = 0;
-	double velocity_dot = 0;
-	double velocity_over_yaw_rate = 0;
-	double theta_dot = 0;
+	double theta_0 = 0.0;
+	double velocity_dot = 0.0;
+	double velocity_over_yaw_rate = 0.0;
+	double theta_dot = 0.0;
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_prediction) {
@@ -156,7 +156,7 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 	unsigned int current_observation = 0;
 	unsigned int current_prediction = 0;
 	double min_distance = INFINITE_DISTANCE;
-	double distance = 0;
+	double distance = 0.0;
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_dataAssociation) {
@@ -228,27 +228,27 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	// define variables
 	unsigned int current_landmark = 0;
 	LandmarkObs landmark;
-	double distance = 0;
+	double distance = 0.0;
 	std::vector<LandmarkObs> predicted;
 	unsigned int current_particle = 0;
-	double part_x = 0;
-	double part_y = 0;
-	double part_theta = 0;
+	double part_x = 0.0;
+	double part_y = 0.0;
+	double part_theta = 0.0;
 	unsigned int current_observation = 0;
-	double obs_id = 0;
-	double obs_x = 0;
-	double obs_y = 0;
-	double x_map = 0;
-	double y_map = 0;
+	double obs_id = 0.0;
+	double obs_x = 0.0;
+	double obs_y = 0.0;
+	double x_map = 0.0;
+	double y_map = 0.0;
 	LandmarkObs observation_map;
 	std::vector<LandmarkObs> observations_map;
 	std::vector<int> associations;
 	std::vector<double> sense_x;
 	std::vector<double> sense_y;
-	unsigned int current_observation_map = 0;
-	unsigned int current_predicted = 0;
-	double pred_x = 0;
-	double pred_y = 0;
+	unsigned int current_observation_map = 0.0;
+	unsigned int current_predicted = 0.0;
+	double pred_x = 0.0;
+	double pred_y = 0.0;
 	double observation_weight = INIT_WEIGHT;
 	
 	// display message if required
@@ -260,14 +260,12 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
-	cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-	cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	
 	// filter for landmarks in sensor distance
 	for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
 		
 		landmark = getMapLandmark(current_landmark, map_landmarks);
-		distance = dist(0, 0, landmark.x, landmark.y);
+		distance = dist(0.0, 0.0, landmark.x, landmark.y);
 		if (distance <= sensor_range) predicted.push_back(landmark);
 		
 	}
@@ -354,10 +352,12 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 		cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
 	}
+	cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
 	cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 	
 }
