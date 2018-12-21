@@ -21,7 +21,6 @@
 #include "particle_filter.h"
 
 using namespace std;
-using namespace random;
 
 // define noise generator
 static default_random_engine gen;
