@@ -126,7 +126,7 @@ public:
 private:
 
 	// define constants
-	const int NUM_PARTICLES = 5; // 20
+	const int NUM_PARTICLES = 20; // 5 // 100
 	const double INIT_WEIGHT = 1.0;
 	const double ZERO_DETECTION = 1e-6;
 	double ZERO_MEAN [3] = {0.0, 0.0, 0.0};
