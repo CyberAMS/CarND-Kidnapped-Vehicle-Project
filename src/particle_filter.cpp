@@ -8,8 +8,16 @@
  *
  */
 
-// #define CODE
-#define TEST
+// #define CODE_INIT
+#define TEST_INIT
+// #define CODE_PREP
+#define TEST_PREP
+#define CODE_DATA
+// #define TEST_DATA
+#define CODE_UPDA
+// #define TEST_UPDA
+// #define CODE_RESA
+#define TEST_RESA
 
 #include <random>
 #include <algorithm>
@@ -33,7 +41,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	//   x, y, theta and their uncertainties from GPS) and all weights to 1. 
 	// Add random Gaussian noise to each particle.
 	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
-#ifdef CODE
+#ifdef CODE_INIT
 	
 	// define variables
 	unsigned int current_particle = 0;
@@ -82,8 +90,8 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 		
 	}
 	
-#endif /* CODE */
-#ifdef TEST
+#endif /* CODE_INIT */
+#ifdef TEST_INIT
 	
   num_particles = 101;
 
@@ -111,7 +119,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 
   is_initialized = true;
 	
-#endif /* TEST */
+#endif /* TEST_INIT */
 }
 
 void ParticleFilter::prediction(double delta_t, double std_pos[], double velocity, double yaw_rate) {
@@ -119,7 +127,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	// NOTE: When adding noise you may find std::normal_distribution and std::default_random_engine useful.
 	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
 	//  http://www.cplusplus.com/reference/random/default_random_engine/
-#ifdef CODE
+#ifdef CODE_PRED
 	
 	// define variables
 	unsigned int current_particle = 0;
@@ -179,8 +187,8 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 		
 	}
 	
-#endif /* CODE */
-#ifdef TEST
+#endif /* CODE_PRED */
+#ifdef TEST_PRED
 	
   // define normal distributions for sensor noise
   normal_distribution<double> N_x(0, std_pos[0]);
@@ -206,20 +214,20 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
     particles[i].theta += N_theta(gen);
   }
 	
-#endif /* TEST */
+#endif /* TEST_PRED */
 }
 
-#ifdef CODE
+#ifdef CODE_DATA
 void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations, std::vector<int> &associations, std::vector<double> &sense_x, std::vector<double> &sense_y) {
 	// TODO: Find the predicted measurement that is closest to each observed measurement and assign the 
 	//   observed measurement to this particular landmark.
 	// NOTE: this method will NOT be called by the grading code. But you will probably find it useful to 
 	//   implement this method and use it as a helper during the updateWeights phase.
-#endif /* CODE */
-#ifdef TEST
+#endif /* CODE_DATA */
+#ifdef TEST_DATA
 void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations) {
-#endif /* TEST */
-#ifdef CODE
+#endif /* TEST_DATA */
+#ifdef CODE_DATA
 	
 	// define variables
 	unsigned int current_observation = 0;
@@ -279,8 +287,8 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 		
 	}
 	
-#endif /* CODE */
-#ifdef TEST
+#endif /* CODE_DATA */
+#ifdef TEST_DATA
 	
   for (unsigned int i = 0; i < observations.size(); i++) {
     
@@ -311,7 +319,7 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
     observations[i].id = map_id;
   }
 	
-#endif /* TEST */
+#endif /* TEST_DATA */
 }
 
 void ParticleFilter::updateWeights(double sensor_range, double std_landmark[], 
@@ -326,7 +334,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	//   and the following is a good resource for the actual equation to implement (look at equation 
 	//   3.33
 	//   http://planning.cs.uiuc.edu/node99.html
-#ifdef CODE
+#ifdef CODE_UPDA
 	
 	// define variables
 	unsigned int current_landmark = 0;
@@ -463,8 +471,8 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	}
 	cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 	
-#endif /* CODE */
-#ifdef TEST
+#endif /* CODE_UPDA */
+#ifdef TEST_UPDA
 	
   // for each particle...
   for (int i = 0; i < num_particles; i++) {
@@ -535,14 +543,14 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     }
   }
 	
-#endif /* TEST */
+#endif /* TEST_UPDA */
 }
 
 void ParticleFilter::resample() {
 	// TODO: Resample particles with replacement with probability proportional to their weight. 
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
-#ifdef CODE
+#ifdef CODE_RESA
 	
 	// define variables
 	unsigned int current_particle = 0;
@@ -577,8 +585,8 @@ void ParticleFilter::resample() {
 		
 	}
 	
-#endif /* CODE */
-#ifdef TEST
+#endif /* CODE_RESA */
+#ifdef TEST_RESA
 	
   vector<Particle> new_particles;
 
@@ -612,7 +620,7 @@ void ParticleFilter::resample() {
 
   particles = new_particles;
 	
-#endif /* TEST */
+#endif /* TEST_RESA */
 }
 
 Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<int>& associations, 
