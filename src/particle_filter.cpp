@@ -389,7 +389,7 @@ void ParticleFilter::resample() {
 	}
 	
 	// use new particles instead of original ones
-	particles = new_particles;
+	//particles = new_particles;
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_resample) {
