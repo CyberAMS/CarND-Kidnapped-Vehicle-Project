@@ -261,15 +261,6 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		// cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
 	
-	// filter for landmarks in sensor distance
-	for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
-		
-		landmark = getMapLandmark(current_landmark, map_landmarks);
-		distance = dist(0.0, 0.0, landmark.x, landmark.y);
-		if (distance <= sensor_range) predicted.push_back(landmark);
-		
-	}
-	
 	// remove all previous weights
 	weights.clear();
 	
@@ -277,6 +268,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	for (current_particle = 0; current_particle < num_particles; current_particle++) {
 		
 		// reset associations
+		predicted.clear();
 		observations_map.clear();
 		associations.clear();
 		sense_x.clear();
@@ -286,6 +278,15 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 		part_x = particles[current_particle].x;
 		part_y = particles[current_particle].y;
 		part_theta = particles[current_particle].theta;
+		
+		// filter for landmarks in sensor distance
+		for (current_landmark = 0; current_landmark < map_landmarks.landmark_list.size(); current_landmark++) {
+			
+			landmark = getMapLandmark(current_landmark, map_landmarks);
+			distance = dist(part_x, part_y, landmark.x, landmark.y);
+			if (distance <= sensor_range) predicted.push_back(landmark);
+			
+		}
 		
 		// translate observations for particle from vehicle to map coordinates
 		for (current_observation = 0; current_observation < observations.size(); current_observation++) {
@@ -350,7 +351,6 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		// cout << "  observations: " << endl << createLandmarksString(observations) << endl;
 		// cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
-		cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
 		// cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		// cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
