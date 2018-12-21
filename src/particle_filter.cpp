@@ -8,16 +8,16 @@
  *
  */
 
-#define CODE_INIT
-// #define TEST_INIT
-#define CODE_PREP
-// #define TEST_PREP
+// #define CODE_INIT
+#define TEST_INIT
+// #define CODE_PREP
+#define TEST_PREP
 #define CODE_DATA
 // #define TEST_DATA
 #define CODE_UPDA
 // #define TEST_UPDA
-#define CODE_RESA
-// #define TEST_RESA
+// #define CODE_RESA
+#define TEST_RESA
 
 #include <random>
 #include <algorithm>
