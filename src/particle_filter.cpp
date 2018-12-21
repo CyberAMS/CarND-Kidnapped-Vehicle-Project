@@ -498,7 +498,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     }
 
     // perform dataAssociation for the predictions and transformed observations on current particle
-    dataAssociation(predictions, transformed_os);
+		associations.clear();
+		sense_x.clear();
+		sense_y.clear();
+    dataAssociation(predictions, transformed_os, associations, sense_x, sense_y);
 
     // reinit weight
     particles[i].weight = 1.0;
