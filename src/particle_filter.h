@@ -131,7 +131,7 @@ private:
 	const double ZERO_DETECTION = 1e-6;
 	double ZERO_MEAN [3] = {0.0, 0.0, 0.0};
 	double INFINITE_DISTANCE = std::numeric_limits<double>::max();
-	const bool bDISPLAY = false;
+	const bool bDISPLAY = true;
 	const bool bDISPLAY_init = true;
 	const bool bDISPLAY_prediction = true;
 	const bool bDISPLAY_dataAssociation = false;
