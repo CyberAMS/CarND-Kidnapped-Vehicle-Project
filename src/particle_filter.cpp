@@ -314,7 +314,7 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 #endif /* TEST_DATA */
 }
 
-#define TEST
+#ifdef TEST
 const LandmarkObs local_to_global(const LandmarkObs& obs, const Particle& p)
 {
   LandmarkObs out;
