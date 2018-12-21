@@ -8,6 +8,9 @@
  *
  */
 
+#define CODE
+// #define TEST
+
 #include <random>
 #include <algorithm>
 #include <iostream>
@@ -367,6 +370,8 @@ void ParticleFilter::resample() {
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
 	
+#ifdef CODE
+	
 	// define variables
 	unsigned int current_particle = 0;
 	std::vector<Particle> new_particles;
@@ -399,6 +404,43 @@ void ParticleFilter::resample() {
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
 	}
+	
+#endif /* CODE */
+#ifdef TEST
+	
+  vector<Particle> new_particles;
+
+  // get all of the current weights
+  vector<double> weights;
+  for (int i = 0; i < num_particles; i++) {
+    weights.push_back(particles[i].weight);
+  }
+
+  // generate random starting index for resampling wheel
+  uniform_int_distribution<int> uniintdist(0, num_particles-1);
+  auto index = uniintdist(gen);
+
+  // get max weight
+  double max_weight = *max_element(weights.begin(), weights.end());
+
+  // uniform random distribution [0.0, max_weight)
+  uniform_real_distribution<double> unirealdist(0.0, max_weight);
+
+  double beta = 0.0;
+
+  // spin the resample wheel!
+  for (int i = 0; i < num_particles; i++) {
+    beta += unirealdist(gen) * 2.0;
+    while (beta > weights[index]) {
+      beta -= weights[index];
+      index = (index + 1) % num_particles;
+    }
+    new_particles.push_back(particles[index]);
+  }
+
+  particles = new_particles;
+	
+#endif /* TEST */
 	
 }
 
