@@ -8,8 +8,8 @@
  *
  */
 
-#define CODE
-// #define TEST
+// #define CODE
+#define TEST
 
 #include <random>
 #include <algorithm>
