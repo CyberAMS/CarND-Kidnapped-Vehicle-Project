@@ -16,8 +16,8 @@
 #define TEST_DATA
 // #define CODE_UPDA
 #define TEST_UPDA
-#define CODE_RESA
-// #define TEST_RESA
+// #define CODE_RESA
+#define TEST_RESA
 
 #include <random>
 #include <algorithm>
