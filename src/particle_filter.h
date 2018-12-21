@@ -12,8 +12,10 @@
 #ifndef PARTICLE_FILTER_H_
 #define PARTICLE_FILTER_H_
 
-// #define CODE_DATA
+#define CODE_DATA
+/*
 #define TEST_DATA
+*/
 
 #include <iostream>
 #include <string>
