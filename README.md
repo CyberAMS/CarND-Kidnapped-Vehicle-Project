@@ -166,7 +166,7 @@ inline double mvg(double x_value, double y_value, double mu_x, double mu_y, doub
 
 ### 2. Implementation in C/C++
 
-The the beginning the map data is loaded in the `main.cpp` function. The `main.cpp` function connects to the simulator via [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) and receives the current observations in each step. In each step it determines the best particle by picking the one with the highest weight. It then sends the best particle's position with attached observations and associated landmark ids back to the simulator for visualization and error calculation.
+At the beginning the map data is loaded in the `main.cpp` function. The `main.cpp` function connects to the simulator via [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) and receives the current observations in each step. In each step it determines the best particle by picking the one with the highest weight. It then sends the best particle's position with attached observations and associated landmark ids back to the simulator for visualization and error calculation.
 
 The flow of the particle filter in each step is defined by the following sequence of methods:
 
