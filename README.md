@@ -14,8 +14,8 @@ The following table shows an overview of the most important files:
 | data/map_data.txt            | Provided map data with landmark definitions                     |
 | src/helper_functions.h       | Source code of helper functions for the particle filter         |
 | src/main.cpp                 | Source code of the main function of the particle filter project |
-| src/map.h                    | Source code of map object                                       |
-| src/particle_filter.{h, cpp} | Source code of particle filter object                           |
+| src/map.h                    | Source code of the map object                                   |
+| src/particle_filter.{h, cpp} | Source code of the particle filter object                       |
 
 ---
 
