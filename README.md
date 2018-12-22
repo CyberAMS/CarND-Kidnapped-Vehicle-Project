@@ -237,7 +237,7 @@ std::string createMapString(Map map);
 
 ### 1. Commands to start the simulation
 
-The program is compiled using the `.\build.sh` command. After this it can be started using the `.\run.sh' command. Once the program is running and listening on port 4567 the simulator can be started.
+The program is compiled using the `.\build.sh` command. After this it can be started using the `.\run.sh` command. Once the program is running and listening on port 4567 the simulator can be started.
 
 ### 2. Simulation results
 
