@@ -255,7 +255,7 @@ For the case with 20 particles the below picture series shows several different 
 
 ## 5. Discussion
 
-Sometimes the particle filter doesn't associate the observations to the considered landmarks correctly. This is the case, because the best particle location doesn't exactly match the vehicle position and the observations are also noisy. The particle filter looks for landmarks in the map that are exactly within the sensor range of the particle. Therefore, observations can include landmarks that are just outside of the sensor range. As they are not included in the considered landmarks, a wrong association is made. Typically, this is only the case for a few timesteps while passing a landmark just about in sensor range.
+Sometimes the particle filter doesn't associate the observations to the considered landmarks correctly. This is shown by a longer red line from the end of a blue line (best particle with observation) to the wrongly associated landmark. This happens, because the best particle location doesn't exactly match the vehicle position and the observations are also noisy. The particle filter looks for landmarks in the map that are exactly within the sensor range of the particle. Therefore, observations can include landmarks that are just outside of the sensor range. As they are not included in the considered landmarks, a wrong association is made. Typically, this is only the case for a few timesteps while passing a landmark just about in sensor range.
 
 Below are two examples to visualize the issue. The center image shows the step when the observation is associated to the wrong landmark. The left and right images show the situation slightly before and after this. It is clear that this only happens for a very short time.
 
