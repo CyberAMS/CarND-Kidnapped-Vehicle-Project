@@ -103,8 +103,8 @@ The particle filter is defined as object class `ParticleFilter` in `particle_fil
 | `theta`        | heading angle of particle as double                                                    |
 | `weight`       | weight showing how good it associates landmarks to the observations as double          |
 | `associations` | vector list of landmark ids (integers) associated to the observations                  |
-| `sense_y`      | vector list of x positions (double) of the observations added to the particle position |
-| `sense_x`      | vector list of y positions (double) of the observations added to the particle position |
+| `sense_x`      | vector list of x positions (double) of the observations added to the particle position |
+| `sense_y`      | vector list of y positions (double) of the observations added to the particle position |
 
 ## 3. Particle filter implementation
 
