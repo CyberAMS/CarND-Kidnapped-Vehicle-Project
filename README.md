@@ -243,7 +243,7 @@ The program is compiled using the `.\build.sh` command. After this it can be sta
 
 I tested the particle filter with 5, 20 and 100 particles. The animations below show the simulator output for each variant from left to right. Due to the very good first estimate, the particle filter works great with either setting. I settled on 20 particles to balance efficiency and potentially more complicated scenarios than the given example.
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20.gif" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_100.gif" width="30%">
 
 For the case with 20 particles the below picture series shows several different scenarios for vehicle versus landmark locations. It is also shown that the particle filter passes the test at the end.
 
