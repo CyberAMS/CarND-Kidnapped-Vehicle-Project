@@ -6,16 +6,16 @@ The goal of this project is to program a [particle filter](https://en.wikipedia.
 
 The following table shows an overview of the most important files:
 
-| File                         | Description                                                    |
-|------------------------------|----------------------------------------------------------------|
-| README.md                    | This file                                                      |
-| build.sh                     | Script to build the particle filter executable                 |
-| run.sh                       | Script to run the particle filter executable                   |
-| data/map_data.txt            | Provided map data with landmark definitions                    |
-| src/helper_functions.h       | Source code of helper functions for the particle filter        |
-| src/main.cpp                 | Source code of main function of particle filter filter project |
-| src/map.h                    | Source code of map object                                      |
-| src/particle_filter.{h, cpp} | Source code of particle filter object                          |
+| File                         | Description                                                     |
+|------------------------------|-----------------------------------------------------------------|
+| README.md                    | This file                                                       |
+| build.sh                     | Script to build the particle filter executable                  |
+| run.sh                       | Script to run the particle filter executable                    |
+| data/map_data.txt            | Provided map data with landmark definitions                     |
+| src/helper_functions.h       | Source code of helper functions for the particle filter         |
+| src/main.cpp                 | Source code of the main function of the particle filter project |
+| src/map.h                    | Source code of map object                                       |
+| src/particle_filter.{h, cpp} | Source code of particle filter object                           |
 
 ---
 
