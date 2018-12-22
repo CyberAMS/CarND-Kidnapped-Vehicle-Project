@@ -243,13 +243,13 @@ The program is compiled using the `.\build.sh` command. After this it can be sta
 
 In the simulator the blue dots are LIDAR measurements and the red dots are RADAR measurements. The sensor fusion results are shown as green dots and are clearly closer to the ground truth values than the individual measurements for LIDAR or RADAR (see image below).
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5.gif" width="30%" border=1>
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 0.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 168.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 207.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 0.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 168.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 207.png" width="30%" border=1>
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 264.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 289.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 341.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 264.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 289.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 341.png" width="30%" border=1>
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 362.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 434.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 639.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 362.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 434.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 639.png" width="30%" border=1>
 
 The debugging output of this example can be found in [./build/out.txt](./build/out.txt).
 
@@ -259,9 +259,9 @@ The final RMSE values are `[0.0973, 0.0855, 0.4513, 0.4399]` and therefore well 
 
 The main challenge of this project is the setup of a working tool chain when you use a Windows computer.
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 9.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 10.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 11.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 9.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 10.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 11.png" width="30%" border=1>
 
-<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 58.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 59.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 60.png" width="30%" style="border: 2px blue dashed; border-radius: 10px; padding: 5px;">
+<img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 58.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 59.png" width="30%" border=1> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_5 60.png" width="30%" border=1>
 
 Also, the provided templates used a mixture of different programming styles and a lot of inline variable definitions. For consistency and easier debugging I did some minor clean up.
 
