@@ -173,7 +173,7 @@ The flow of the particle filter in each step is defined by the following sequenc
 ```C
 ParticleFilter pf;
 ...
-*in each steps do* {
+in each step do {
 	if (!pf.initialized()) {
 		pf.init(...);
 	}
