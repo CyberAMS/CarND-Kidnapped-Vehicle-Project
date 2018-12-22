@@ -156,7 +156,7 @@ The transformation between vehicle coordinates (observations with change/distanc
 	y_map = y_offset_map + (sin(alpha) * x_change_relative) + (cos(alpha) * y_change_relative);
 ```
 
-The multi-variate Gaussian distribution is calculated with the following function:
+The [multi-variate Gaussian distribution](https://en.wikipedia.org/wiki/Multivariate_normal_distribution) is calculated with the following function:
 
 ```C
 inline double mvg(double x_value, double y_value, double mu_x, double mu_y, double s_x, double s_y) {
@@ -189,7 +189,7 @@ In the first step the `pf.init()` method initializes all particles with a random
 
 The `pf.prediction()` method uses the above described linear bicycle motion model to calculate the location of all particles after the duration `delta_t`. It also adds random noise to each particle's location with the method `addNoise()`. This ensures that we consider new and potentially better particle locations in each step.
 
-The `pf.UpdateWeights()` method executes a sequence of steps for all particles to update their weights based on the new observations (i.e. measurements). First it determines the map landmarks within the sensor range of the particle's location. Then it uses the above mentioned equations to transform the vehicle observations into global map coordinates for the particle. After this it uses the [nearest neighbor method](https://en.wikipedia.org/wiki/Nearest_neighbor_search) to associate the observations in global map coordinates to the map landmarks within the sensor range. And finally it calculates the new weight for the particle as multiplication of the probabilities that each observation is close to the associated landmark. The multi-variate Gaussian distribution function from above is used to determine the probability that the observation in global map coordinates is equal to the associated landmark.
+The `pf.UpdateWeights()` method executes a sequence of steps for all particles to update their weights based on the new observations (i.e. measurements). First it determines the map landmarks within the sensor range of the particle's location. Then it uses the above mentioned equations to transform the vehicle observations into global map coordinates for the particle. After this it uses the [nearest neighbor method](https://en.wikipedia.org/wiki/Nearest_neighbor_search) to associate the observations in global map coordinates to the map landmarks within the sensor range. And finally it calculates the new weight for the particle as multiplication of the probabilities that each observation is close to the associated landmark. The [multi-variate Gaussian distribution](https://en.wikipedia.org/wiki/Multivariate_normal_distribution) function from above is used to determine the probability that the observation in global map coordinates is equal to the associated landmark.
 
 The `pf.resample()` method is then used to draw a new list of particles from the existing list of particples. The weight of each particle is used as probability during this drawing process. This ensures that more likely particle locations get drawn more often into the new list of particles. The new list of particles contains the same number of particles as before.
 
