@@ -16,6 +16,7 @@ The following table shows an overview of the most important files:
 | src/main.cpp                 | Source code of the main function of the particle filter project |
 | src/map.h                    | Source code of the map object                                   |
 | src/particle_filter.{h, cpp} | Source code of the particle filter object                       |
+| out.zip                      | Contains out.txt (debugging information for 20 particle run)    |
 
 ---
 
@@ -238,6 +239,8 @@ std::string createMapString(Map map);
 ### 1. Commands to start the simulation
 
 The program is compiled using the `.\build.sh` command. After this it can be started using the `.\run.sh` command. Once the program is running and listening on port 4567 the simulator can be started.
+
+The debugging output of the 20 particle run is zipped in [./out.zip](./out.zip).
 
 ### 2. Simulation results
 
