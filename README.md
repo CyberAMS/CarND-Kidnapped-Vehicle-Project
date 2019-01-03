@@ -240,8 +240,6 @@ std::string createMapString(Map map);
 
 The program is compiled using the `.\build.sh` command. After this it can be started using the `.\run.sh` command. Once the program is running and listening on port 4567 the simulator can be started.
 
-The debugging output of the 20 particle run is zipped in [./out.zip](./out.zip).
-
 ### 2. Simulation results
 
 I tested the particle filter with 5, 20 and 100 particles. The animations below show the simulator output for each variant from left to right. Due to the very good first estimate, the particle filter works great with either setting. I settled on 20 particles to balance efficiency and potentially more complicated scenarios than the given example.
@@ -255,6 +253,8 @@ For the case with 20 particles the below picture series shows several different 
 <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 264.png" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 289.png" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 341.png" width="30%">
 
 <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 362.png" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 434.png" width="30%"> <img src="docu_images/181221_StAn_Udacity_SDC_Kidnapped_Vehicle_Project_20 639.png" width="30%">
+
+The debugging output of the 20 particle run is zipped in [./out.zip](./out.zip).
 
 ## 5. Discussion
 
