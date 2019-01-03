@@ -32,8 +32,8 @@ std::string hasData(std::string s) {
 }
 
 // define constants
-const bool bFILEOUTPUT = false;
-const bool bDISPLAY = false;
+const bool bFILEOUTPUT = true;
+const bool bDISPLAY = true;
 const bool bTEST = false;
 
 // define file for redirecting standard output and append
