@@ -39,10 +39,10 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	if (bDISPLAY && bDISPLAY_init) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: init - Start" << endl;
-		// cout << "  x: " << endl << x << endl << endl;
-		// cout << "  y: " << endl << y << endl << endl;
-		// cout << "  theta: " << endl << theta << endl << endl;
-		// cout << "  std: " << endl << createArrayString(std, 3) << endl;
+		cout << "  x: " << endl << x << endl << endl;
+		cout << "  y: " << endl << y << endl << endl;
+		cout << "  theta: " << endl << theta << endl << endl;
+		cout << "  std: " << endl << createArrayString(std, 3) << endl;
 	}
 	
 	// define number of particles
@@ -70,9 +70,9 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_init) {
-		// cout << "  num_particles: " << endl << num_particles << endl << endl;
-		// cout << "  particles: " << endl << createParticlesString(particles) << endl;
-		// cout << "  is_initialized: " << endl << is_initialized << endl << endl;
+		cout << "  num_particles: " << endl << num_particles << endl << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  is_initialized: " << endl << is_initialized << endl << endl;
 		cout << "--- PARTICLE_FILTER: init - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -97,10 +97,10 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	if (bDISPLAY && bDISPLAY_prediction) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: prediction - Start" << endl;
-		// cout << "  delta_t: " << endl << delta_t << endl << endl;
-		// cout << "  std_pos: " << endl << createArrayString(std_pos, 3) << endl;
-		// cout << "  velocity: " << endl << velocity << endl << endl;
-		// cout << "  yaw_rate: " << endl << yaw_rate << endl << endl;
+		cout << "  delta_t: " << endl << delta_t << endl << endl;
+		cout << "  std_pos: " << endl << createArrayString(std_pos, 3) << endl;
+		cout << "  velocity: " << endl << velocity << endl << endl;
+		cout << "  yaw_rate: " << endl << yaw_rate << endl << endl;
 	}
 	
 	// move all particles according to measurement
@@ -138,7 +138,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_prediction) {
-		// cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: prediction - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -162,11 +162,11 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 	if (bDISPLAY && bDISPLAY_dataAssociation) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: dataAssociation - Start" << endl;
-		// cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
-		// cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-		// cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
-		// cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
-		// cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
+		cout << "  predicted: " << endl << createLandmarksString(predicted) << endl;
+		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 	}
 	
 	// find nearest predicted landmark for all observed landmarks
@@ -201,10 +201,10 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_dataAssociation) {
-		// cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-		// cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
-		// cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
-		// cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
+		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 		cout << "--- PARTICLE_FILTER: dataAssociation - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -255,10 +255,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	if (bDISPLAY && bDISPLAY_updateWeights) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: updateWeights - Start" << endl;
-		// cout << "  sensor_range: " << endl << sensor_range << endl << endl;
-		// cout << "  std_landmark: " << endl << createArrayString(std_landmark, 2) << endl;
-		// cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-		// cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
+		cout << "  sensor_range: " << endl << sensor_range << endl << endl;
+		cout << "  std_landmark: " << endl << createArrayString(std_landmark, 2) << endl;
+		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
+		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
 	
 	// remove all previous weights
@@ -349,10 +349,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_updateWeights) {
-		// cout << "  observations: " << endl << createLandmarksString(observations) << endl;
-		// cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
-		// cout << "  particles: " << endl << createParticlesString(particles) << endl;
-		// cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
+		cout << "  observations: " << endl << createLandmarksString(observations) << endl;
+		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
 		cout << "--- PARTICLE_FILTER: updateWeights - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -373,7 +373,7 @@ void ParticleFilter::resample() {
 	if (bDISPLAY && bDISPLAY_resample) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: resample - Start" << endl;
-		// cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 	}
 	
 	// define discrete distribution based on weights
@@ -391,8 +391,8 @@ void ParticleFilter::resample() {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_resample) {
-		// cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
-		// cout << "  particles: " << endl << createParticlesString(particles) << endl;
+		cout << "  weights: " << endl << createDoubleVectorString(weights) << endl;
+		cout << "  particles: " << endl << createParticlesString(particles) << endl;
 		cout << "--- PARTICLE_FILTER: resample - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -412,10 +412,10 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
 	if (bDISPLAY && bDISPLAY_SetAssociations) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: SetAssociations - Start" << endl;
-		// cout << "  particle: " << endl << createParticleString(particle) << endl;
-		// cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
-		// cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
-		// cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 	}
 	
 	particle.associations = associations;
@@ -424,10 +424,10 @@ Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<i
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_SetAssociations) {
-		// cout << "  particle: " << endl << createParticleString(particle) << endl;
-		// cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
-		// cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
-		// cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
+		cout << "  associations: " << endl << createIntegerVectorString(associations) << endl;
+		cout << "  sense_x: " << endl << createDoubleVectorString(sense_x) << endl;
+		cout << "  sense_y: " << endl << createDoubleVectorString(sense_y) << endl;
 		cout << "--- PARTICLE_FILTER: SetAssociations - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -475,9 +475,9 @@ void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 	if (bDISPLAY && bDISPLAY_addNoise) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: addNoise - Start" << endl;
-		// cout << "  particle: " << endl << createParticleString(particle) << endl;
-		// cout << "  mean: " << endl << createArrayString(mean, 3) << endl;
-		// cout << "  std: " << endl << createArrayString(std, 3) << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
+		cout << "  mean: " << endl << createArrayString(mean, 3) << endl;
+		cout << "  std: " << endl << createArrayString(std, 3) << endl;
 	}
 	
 	// define Gaussian distribution noise
@@ -492,7 +492,7 @@ void ParticleFilter::addNoise(Particle &particle, double mean[], double std[]) {
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_addNoise) {
-		// cout << "  particle: " << endl << createParticleString(particle) << endl;
+		cout << "  particle: " << endl << createParticleString(particle) << endl;
 		cout << "--- PARTICLE_FILTER: addNoise - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -510,8 +510,8 @@ LandmarkObs ParticleFilter::getMapLandmark(unsigned int num_landmark, Map map_la
 	if (bDISPLAY && bDISPLAY_getMapLandmark) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: getMapLandmark - Start" << endl;
-		// cout << "  num_landmark: " << endl << num_landmark << endl;
-		// cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
+		cout << "  num_landmark: " << endl << num_landmark << endl;
+		cout << "  map_landmarks: " << endl << createMapString(map_landmarks) << endl;
 	}
 	
 	// assign data
@@ -521,7 +521,7 @@ LandmarkObs ParticleFilter::getMapLandmark(unsigned int num_landmark, Map map_la
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_getMapLandmark) {
-		// cout << "  landmark: " << endl << createLandmarkString(landmark) << endl;
+		cout << "  landmark: " << endl << createLandmarkString(landmark) << endl;
 		cout << "--- PARTICLE_FILTER: getMapLandmark - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
@@ -539,13 +539,13 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	if (bDISPLAY && bDISPLAY_transformVehicle2Map) {
 		cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =" << endl;
 		cout << "PARTICLE_FILTER: transformVehicle2Map - Start" << endl;
-		// cout << "  x_offset_map: " << endl << x_offset_map << endl << endl;
-		// cout << "  y_offset_map: " << endl << y_offset_map << endl << endl;
-		// cout << "  x_change_relative: " << endl << x_change_relative << endl << endl;
-		// cout << "  y_change_relative: " << endl << y_change_relative << endl << endl;
-		// cout << "  alpha: " << endl << alpha << endl << endl;
-		// cout << "  x_map: " << endl << x_map << endl << endl;
-		// cout << "  y_map: " << endl << y_map << endl << endl;
+		cout << "  x_offset_map: " << endl << x_offset_map << endl << endl;
+		cout << "  y_offset_map: " << endl << y_offset_map << endl << endl;
+		cout << "  x_change_relative: " << endl << x_change_relative << endl << endl;
+		cout << "  y_change_relative: " << endl << y_change_relative << endl << endl;
+		cout << "  alpha: " << endl << alpha << endl << endl;
+		cout << "  x_map: " << endl << x_map << endl << endl;
+		cout << "  y_map: " << endl << y_map << endl << endl;
 	}
 	
 	// transformations
@@ -554,8 +554,8 @@ void ParticleFilter::transformVehicle2Map(double x_offset_map, double y_offset_m
 	
 	// display message if required
 	if (bDISPLAY && bDISPLAY_transformVehicle2Map) {
-		// cout << "  x_map: " << endl << x_map << endl << endl;
-		// cout << "  y_map: " << endl << y_map << endl << endl;
+		cout << "  x_map: " << endl << x_map << endl << endl;
+		cout << "  y_map: " << endl << y_map << endl << endl;
 		cout << "--- PARTICLE_FILTER: transformVehicle2Map - End" << endl;
 		cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 		
